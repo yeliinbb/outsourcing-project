@@ -4,7 +4,7 @@ import NavBar from '../common/NavBar';
 
 const Layout = () => {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row bg-bgGray">
       <NavBar />
       <Outlet />
     </div>
