@@ -4,7 +4,7 @@ export const fetchGameSchedule = async () => {
   try {
     const { data: gameSchedule, error } = await supabase
       .from('gameSchedule')
-      .select('date, time, homeTeam, awayTeam, location');
+      .select('*');
     if (error) {
       throw error;
     }
