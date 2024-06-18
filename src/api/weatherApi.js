@@ -8,7 +8,6 @@ export const fetchWeatherData = async (cityName) => {
   const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIkey}&units=metric`;
   try {
     const response = await axios.get(weatherUrl);
-    //   console.log(response.data.weather[0].main);
     return response.data;
   } catch (error) {
     console.log(error?.response?.data?.message);

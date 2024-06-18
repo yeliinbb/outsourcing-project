@@ -30,42 +30,9 @@ const WeatherByGame = () => {
     queryFn: fetchGameSchedule,
   });
 
-  // 게임 스케줄 데이터에 있는 도시 이름에 따라 날씨 데이터 가져오기
-  // const { data: weatherData } = useQuery({
-  //   queryKey: ['weather'],
-  //   queryFn: async (context) => {
-  //     const { queryKey, meta, signal, pageParam } = context;
-  //     // console.log(cityNames.Seoul);
-  //     // return await fetchWeatherData(location);
-  //     return await fetchWeatherData(cityNames.Seoul);
-  //   },
-  //   enabled: isGameScheduleSuccess, // 게임 스케줄 데이터가 성공적으로 로드된 후에만 날씨 데이터 가져오기
-  // });
-
   console.log('gameScheduleData => ', gameScheduleData);
 
-  // 날씨 데이터와 게임 스케줄 데이터를 병합하는 함수
-  // const mergeData = useCallback((gameSchedule, weather) => {
-  //   const weatherInfo = weather ? weather.weather[0].main : '';
-  //   return gameSchedule.map((data) => ({ ...data, weather: weatherInfo }));
-  // }, []);
-
-  // useEffect(() => {
-  //   // 게임 스케줄 데이터에서 받은 날씨 정보 gameInfo에 새로운 키로 넣어주기
-  //   if (isGameScheduleSuccess && weatherData) {
-  //     // const { main, name, weather } = weatherData;
-  //     // setWeatherInfo(weather[0].main);
-  //     // console.log('weatherInfo => ', weatherInfo);
-  //     // const newData = gameScheduleData.map((data) => {
-  //     //   return { ...data, weather: weatherInfo };
-  //     // });
-  //     // console.log('newData => ', newData);
-
-  //     const mergedData = mergeData(gameScheduleData, weatherData);
-  //     setGameInfo(mergedData);
-  //   }
-  // }, [weatherData, gameScheduleData, isGameScheduleSuccess, mergeData]);
-
+  // 데이터 병합 및 상태 업데이트
   useEffect(() => {
     const fetchWeatherForGames = async () => {
       if (isGameScheduleSuccess) {
