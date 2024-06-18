@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoMdArrowRoundForward } from 'react-icons/io';
+// import { IoMdArrowRoundForward } from 'react-icons/io';
 import icon1 from '../../images/icon1.png';
 import icon2 from '../../images/icon2.png';
 
@@ -9,7 +9,7 @@ const MatchCard = () => {
       <header className="flex justify-between items-center">
         <h1 className=" text-white ml-5 pt-5 text-l">현재 진행중인 경기</h1>
         <div className=" text-white mr-5 pt-5">
-          <IoMdArrowRoundForward />
+          {/* <IoMdArrowRoundForward /> */}
         </div>
       </header>
       <section>
