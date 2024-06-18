@@ -33,7 +33,10 @@ export const getTeamRank = async () => {
 
     const dirPath = path.resolve('../csv');
     const filePath = path.join(dirPath, 'teamRank.csv');
-
+    
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
     fs.writeFileSync(filePath, csv);
 
     await browser.close();
