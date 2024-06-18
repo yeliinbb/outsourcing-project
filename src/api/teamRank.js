@@ -2,6 +2,8 @@ import puppeteer from "puppeteer";
 import { Parser } from 'json2csv'
 import fs from 'fs'
 import path from "path";
+import csvParser from 'csv-parser'
+import supabase from '../supabase/supabaseClient'
 
 export const getTeamRank = async () => {
   try {
@@ -38,7 +40,22 @@ export const getTeamRank = async () => {
       fs.mkdirSync(dirPath, { recursive: true });
     }
     fs.writeFileSync(filePath, csv);
-
+    
+    const results = []
+    fs.createReadStream(filePath)
+      .pipe(csvParser())
+      .on('data', (data) => results.push(data))
+      .on('end', async () => {
+        const { data, error } = await supabase
+          .from('teamRank')
+          .insert(results)
+        
+        if(error) {
+          console.error(error)
+        } else {
+          console.log('success',data)
+        }
+      })
     await browser.close();
   } catch (error) {
     console.error(error);
