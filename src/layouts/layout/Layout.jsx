@@ -4,9 +4,11 @@ import NavBar from '../common/NavBar';
 
 const Layout = () => {
   return (
-    <div>
+    <div className="flex h-screen">
       <NavBar />
-      <Outlet />
+      <div className="flex-1 bg-bgGray overflow-y-auto">
+        <Outlet />
+      </div>
     </div>
   );
 };
