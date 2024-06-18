@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import React from 'react';
+import Router from './shared/Router';
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  return <></>;
-}
+const App = () => {
+  return (
+    <>
+      <Router />
+    </>
+  );
+};
 
 export default App;
