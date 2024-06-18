@@ -78,7 +78,7 @@ const NavBar = () => {
         onClick={handleHomeClick}
         src={home}
         alt="homeIcon"
-        className="mb-10"
+        className="mb-10 cursor-pointer"
       />
       <div className="grid gap-3 justify-items-center">
         {imagePaths.map((item, index) => (
@@ -86,7 +86,7 @@ const NavBar = () => {
             <img
               src={item.image}
               alt={item.title}
-              className="mx-auto h-11 w-11"
+              className="mx-auto h-11 w-11 cursor-pointer"
             />
           </div>
         ))}
