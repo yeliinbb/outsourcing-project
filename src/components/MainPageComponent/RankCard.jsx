@@ -4,55 +4,117 @@ const teamRank = [
   {
     number: 1,
     title: 'KIA',
+    game: 70,
+    win: 41,
+    draw: 1,
+    lose: 28,
+    odds: 0.594,
   },
   {
     number: 2,
     title: 'LG',
+    game: 70,
+    win: 41,
+    draw: 1,
+    lose: 28,
+    odds: 0.594,
   },
   {
     number: 3,
     title: '두산',
+    game: 70,
+    win: 41,
+    draw: 1,
+    lose: 28,
+    odds: 0.594,
   },
   {
     number: 4,
     title: '삼성',
+    game: 70,
+    win: 41,
+    draw: 1,
+    lose: 28,
+    odds: 0.594,
   },
   {
     number: 5,
     title: 'SSG',
+    game: 70,
+    win: 41,
+    draw: 1,
+    lose: 28,
+    odds: 0.594,
   },
   {
     number: 6,
     title: 'NC',
+    game: 70,
+    win: 41,
+    draw: 1,
+    lose: 28,
+    odds: 0.594,
   },
   {
     number: 7,
     title: '한화',
+    game: 70,
+    win: 41,
+    draw: 1,
+    lose: 28,
+    odds: 0.594,
   },
   {
     number: 8,
     title: '롯데',
+    game: 70,
+    win: 41,
+    draw: 1,
+    lose: 28,
+    odds: 0.594,
   },
   {
     number: 9,
     title: 'KT',
+    game: 70,
+    win: 41,
+    draw: 1,
+    lose: 28,
+    odds: 0.594,
   },
   {
     number: 10,
     title: '키움',
+    game: 70,
+    win: 41,
+    draw: 1,
+    lose: 28,
+    odds: 0.594,
   },
 ];
 
 const RankCard = () => {
   return (
-    <main className="w-72 h-96 bg-darkgray ml-5 mt-5 rounded-2xl">
+    <main
+      className="w-full h-[95%] bg-darkgray ml-5 rounded-2xl overflow-hidden"
+      style={{ borderRadius: '1rem' }}
+    >
       <header className="flex justify-between items-center">
-        <h1 className=" text-white ml-5 pt-5 text-l">팀 순위</h1>
+        <h1 className="text-white ml-5 mt-5 mb-5 text-l">팀 순위</h1>
       </header>
-      <section className="ml-5 mt-5 grid gap-2.5">
+      <section className="items-center text-center justify-center">
         {teamRank.map((team, index) => (
-          <div key={index} className="text-white">
-            {team.number}. {team.title}
+          <div
+            key={index}
+            className="w-[90%] h-[90%] mt-3 grid grid-cols-7 text-white"
+          >
+            <div>{team.number}</div>
+            <div>{team.title}</div>
+            <div>{team.game}</div>
+            <div>{team.win}</div>
+            <div>{team.draw}</div>
+            <div>{team.lose}</div>
+            <div>{team.odds}</div>
           </div>
         ))}
       </section>
