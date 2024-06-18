@@ -10,6 +10,7 @@ import icon7 from '../../images/icon7.png';
 import icon8 from '../../images/icon8.png';
 import icon9 from '../../images/icon9.png';
 import icon10 from '../../images/icon10.png';
+import { useNavigate } from 'react-router';
 
 const imagePaths = [
   {
@@ -65,9 +66,20 @@ const imagePaths = [
 ];
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    navigate('/');
+  };
+
   return (
     <div className="w-20 h-full bg-darkgray flex flex-col items-center justify-center">
-      <img src={home} alt="homeIcon" className="mb-10" />
+      <img
+        onClick={handleHomeClick}
+        src={home}
+        alt="homeIcon"
+        className="mb-10"
+      />
       <div className="grid gap-3 justify-items-center">
         {imagePaths.map((item, index) => (
           <div key={index} className="col-sm-12">
