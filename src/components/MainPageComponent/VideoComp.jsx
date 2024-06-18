@@ -46,7 +46,7 @@ const imagePaths = [
 
 const VideoComp = () => {
   return (
-    <div className="w-[96%] h-[60%] mt-5 ml-5 bg-darkgray rounded-2xl relative overflow-hidden">
+    <div className="w-[96%] h-[100%] mt-5 ml-5 bg-darkgray rounded-2xl">
       <SwiperImage imagePaths={imagePaths} />
     </div>
   );

@@ -23,11 +23,13 @@ const SwiperImage = ({ imagePaths }) => {
       >
         &lt;
       </div>
-      <img
-        src={imagePaths[currentIndex].image}
-        alt={`Slide ${currentIndex + 1}`}
-        className="h-full w-full object-cover rounded-2xl z-0"
-      />
+      <div className="w-full h-full flex justify-center items-center">
+        <img
+          src={imagePaths[currentIndex].image}
+          alt={`Slide ${currentIndex + 1}`}
+          className="h-full max-w-full object-cover rounded-2xl"
+        />
+      </div>
       <div
         className="text-white mr-5 absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-black bg-opacity-60 cursor-pointer z-10"
         onClick={nextSlide}
