@@ -1,7 +1,5 @@
-import React from 'react';
-
 const NavBar = () => {
-  return <div>NavBar</div>;
+  return <div className="bg-darkgray mr-10 w-20">NavBar</div>;
 };
 
 export default NavBar;
