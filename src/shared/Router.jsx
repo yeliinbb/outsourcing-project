@@ -4,6 +4,8 @@ import MainPage from '../pages/MainPage/MainPage';
 import DetailPage from '../pages/DetailPage/DetailPage';
 import Layout from '../layouts/layout/Layout';
 
+import YoutubeTest from '../components/YoutubeTest';
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -11,6 +13,7 @@ const Router = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="detail/:id" element={<DetailPage />} />
+          <Route path="/youtube" element={<YoutubeTest />} />
         </Route>
       </Routes>
     </BrowserRouter>
