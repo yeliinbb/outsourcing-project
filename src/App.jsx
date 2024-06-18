@@ -1,5 +1,11 @@
+import { Router } from 'react-router';
+
 function App() {
-  return <main>App</main>;
+  return (
+    <>
+      <Router />
+    </>
+  );
 }
 
 export default App;
