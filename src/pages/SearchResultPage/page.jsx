@@ -25,7 +25,7 @@ function SeacrhResultPage() {
             <Link
               key={i}
               to={`/search/${tag}`}
-              className="bg-bgGray text-white py-1.5 px-4 rounded-full"
+              className="bg-darkgray text-white py-1.5 px-4 rounded-full"
             >
               #{tag}
             </Link>
@@ -34,7 +34,7 @@ function SeacrhResultPage() {
       </div>
       <ul className="py-7 flex flex-wrap">
         {list.map((item, i) => (
-          <li key={i} className="w-1/3 min-w-80">
+          <li key={i} className="w-1/3 min-w-80 px-2">
             <Video item={item.snippet} />
           </li>
         ))}
