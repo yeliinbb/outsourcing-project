@@ -1,6 +1,9 @@
 import puppeteer from "puppeteer";
+import { Parser } from 'json2csv'
+import fs from 'fs'
+import path from "path";
 
-const getTeamRank = async () => {
+export const getTeamRank = async () => {
   try {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
@@ -20,17 +23,22 @@ const getTeamRank = async () => {
         const draws = cells[3]?.textContent.trim()
         const ties = cells[4]?.textContent.trim();
 
-        data.push({ rank, teamName, wins, losses, draws, ties });
+        data.push({ rank : parseInt(rank), teamName, wins : parseInt(wins), losses : parseInt(losses), draws : parseInt(draws) , ties : parseFloat(ties) });
       });
       return data;
     });
 
-    console.log(teams);
+    const json2csvParser = new Parser();
+    const csv = json2csvParser.parse(teams);
+
+    const dirPath = path.resolve('../csv');
+    const filePath = path.join(dirPath, 'teamRank.csv');
+
+    fs.writeFileSync(filePath, csv);
 
     await browser.close();
   } catch (error) {
     console.error(error);
   }
 };
-
-getTeamRank();
+getTeamRank()
