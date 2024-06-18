@@ -1,12 +1,5 @@
-import React from 'react';
-import Router from './shared/Router';
-
-const App = () => {
-  return (
-    <>
-      <Router />
-    </>
-  );
-};
+function App() {
+  return <main>App</main>;
+}
 
 export default App;
