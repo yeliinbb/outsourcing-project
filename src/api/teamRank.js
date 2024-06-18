@@ -1,4 +1,3 @@
-
 import puppeteer from "puppeteer";
 
 const getTeamRank = async () => {
@@ -14,19 +13,14 @@ const getTeamRank = async () => {
       const data = [];
       rows.forEach(row => {
         const cells = row.querySelectorAll('td');
-        let rank = cells[0]?.textContent.trim();
-        let teamName = cells[1]?.textContent.trim();
-        const wins = cells[2]?.textContent.trim();
-        const losses = cells[3]?.textContent.trim();
+        const rank = cells[0]?.textContent.trim().split('\n')[0];
+        const teamName = cells[0]?.textContent.trim().split('\n')[2];
+        const wins = cells[1]?.textContent.trim();
+        const losses = cells[2]?.textContent.trim();
+        const draws = cells[3]?.textContent.trim()
         const ties = cells[4]?.textContent.trim();
 
-        const rankMatch = rank.match(/^(\d+)\s+(\S.+)$/);
-        if (rankMatch) {
-          rank = rankMatch[1];
-          teamName = rankMatch[2];
-        }
-
-        data.push({ rank, teamName, wins, losses, ties });
+        data.push({ rank, teamName, wins, losses, draws, ties });
       });
       return data;
     });
