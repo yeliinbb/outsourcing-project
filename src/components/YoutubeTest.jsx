@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import api from '../api/api';
 
-const YoutubeTest = ({ playlistId }) => {
+const YoutubeTest = ({
+  playlistId,
+  searchKeyword,
+  currentPage,
+  setCurrentPage,
+}) => {
   const [videos, setVideos] = useState([]);
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 추가
   const [totalPages, setTotalPages] = useState(1); // 전체 페이지 상태 추가
   const itemsPerPage = 12; // 페이지당 항목 수
 
@@ -67,13 +70,6 @@ const YoutubeTest = ({ playlistId }) => {
     fetchData();
   }, [searchKeyword, currentPage, playlistId]);
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    const keyword = event.target.elements.keyword.value;
-    setSearchKeyword(keyword);
-    setCurrentPage(1); // 검색 시 현재 페이지를 1로 초기화
-  };
-
   // 페이지 변경 핸들러
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -97,19 +93,8 @@ const YoutubeTest = ({ playlistId }) => {
     return pageNumbers;
   };
 
-  console.log(searchKeyword);
-
   return (
     <div className="p-6">
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          name="keyword"
-          placeholder="검색어 입력"
-          className="border p-2 mr-2"
-        />
-        <button type="submit">검색</button>
-      </form>
       <div className="grid grid-cols-3 gap-4">
         {videos.map((item) => (
           <div

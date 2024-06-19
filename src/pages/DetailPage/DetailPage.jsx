@@ -8,6 +8,8 @@ const DetailPage = () => {
   const [teamData, setTeamData] = useState(null);
   const [keyword, setKeyword] = useState([]);
   const [playlistId, setPlaylistId] = useState('');
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
   const { id } = useParams();
 
   useEffect(() => {
@@ -68,8 +70,19 @@ const DetailPage = () => {
     setPlaylistId(getPlaylistId(id));
   }, [id]);
 
-  if (!teamData) return;
-  console.log(keyword);
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const keyword = event.target.elements.keyword.value;
+    setSearchKeyword(keyword);
+    setCurrentPage(1); // 검색 시 현재 페이지를 1로 초기화
+  };
+
+  const handleTagClick = (tag) => {
+    setSearchKeyword(tag);
+    setCurrentPage(1); // 태그 클릭 시 현재 페이지를 1로 초기화
+  };
+
+  if (!teamData) return null;
 
   return (
     <>
@@ -117,10 +130,28 @@ const DetailPage = () => {
             <p className="leading-8">{teamData.introduction}</p>
           </div>
         </section>
-        <section className="  mx-auto w-[90%]">
-          {keyword.length > 0 && <Tags words={keyword[0]} />}
+        <section className="mx-auto w-[90%]">
+          <div className="my-2">
+            <form onSubmit={handleSearch}>
+              <input
+                type="text"
+                name="keyword"
+                placeholder="검색어 입력"
+                className="text-white w-72 bg-[#272727] p-2 indent-9 outline-none rounded"
+              />
+              <button type="submit"></button>
+            </form>
+            {keyword.length > 0 && (
+              <Tags words={keyword[0]} onTagClick={handleTagClick} />
+            )}
+          </div>
         </section>
-        <YoutubeTest playlistId={playlistId} />
+        <YoutubeTest
+          playlistId={playlistId}
+          searchKeyword={searchKeyword}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </>
   );

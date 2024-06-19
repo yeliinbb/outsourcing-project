@@ -18,6 +18,7 @@ const SwiperImage = ({ videos }) => {
   if (videos.length === 0) {
     return <div>Loading...</div>;
   }
+  console.log('videos.length', videos.length);
 
   const currentVideo = videos[currentIndex];
 
@@ -32,12 +33,12 @@ const SwiperImage = ({ videos }) => {
       <div className="w-full h-full flex justify-center items-center">
         {currentVideo && currentVideo.contentDetails && (
           <iframe
-            width="100%"
+            width="80%"
             height="100%"
             src={`https://www.youtube.com/embed/${currentVideo.contentDetails.videoId}`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className="h-full max-w-full object-cover rounded-2xl"
+            className="h-full max-w-full"
           ></iframe>
         )}
       </div>
