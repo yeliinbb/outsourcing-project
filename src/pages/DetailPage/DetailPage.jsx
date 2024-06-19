@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import supabase from '../../supabase/supabaseClient';
 import Tags from '../../components/Tags';
 import { useParams } from 'react-router';
+import YoutubeTest from '../../components/YoutubeTest';
 
 const DetailPage = () => {
   const [teamData, setTeamData] = useState(null);
   const [keyword, setKeyword] = useState([]);
+  const [playlistId, setPlaylistId] = useState('');
   const { id } = useParams();
 
   useEffect(() => {
@@ -15,7 +17,7 @@ const DetailPage = () => {
           .from('KBOTeam')
           .select('*')
           .eq('id', id);
-        console.log(teamData);
+        console.log('teamData => ', teamData);
         setTeamData(teamData[0]);
       } catch (error) {
         console.log(error);
@@ -37,8 +39,38 @@ const DetailPage = () => {
     keywordHandler();
   }, [id]);
 
+  useEffect(() => {
+    const getPlaylistId = (id) => {
+      switch (id) {
+        case '1':
+          return 'PLYxgcTlkQOzhq7NYAc7Wsoak6dkwFqTrq';
+        case '2':
+          return 'PLgbBASjz_-Qatcq4MbIV9u9-1o5YXJxoI';
+        case '3':
+          return 'PLkXXwsF-ojWyLqf2u0VaVXO-LGCMxyPSe';
+        case '4':
+          return 'PL8_8tSGm7y1Ch1SD1QEIdrF6AhZp9cG5N';
+        case '5':
+          return 'PLz-ZeGBrdzH3V0mpqlg5dWM8h4hogL2En';
+        case '6':
+          return 'PLfsLTyo3tyK-m4UzA0Q8sqInL19ilwsuh';
+        case '7':
+          return 'PLE8rpoVmjLneczAUqTGQWF6ZfZdaVEJee';
+        case '8':
+          return 'PLdr_-welsg4fqbQ46xiAF1T0b-0pZZwXP';
+        case '9':
+          return 'PLe2tqH9V70CNIguRk5Dw89Rkwj7Q8yh3M';
+        case '10':
+          return 'PLH13Vc2FtHHguyxRNXcHgy84PHYgxBGuc';
+      }
+    };
+
+    setPlaylistId(getPlaylistId(id));
+  }, [id]);
+
   if (!teamData) return;
   console.log(keyword);
+
   return (
     <>
       <div className="bg-bgGray h-screen">
@@ -88,6 +120,7 @@ const DetailPage = () => {
         <section className=" bg-white mx-auto w-[90%]">
           {keyword.length > 0 && <Tags words={keyword[0]} />}
         </section>
+        <YoutubeTest playlistId={playlistId} />
       </div>
     </>
   );

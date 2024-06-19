@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../api/api';
 
-const YoutubeTest = () => {
+const YoutubeTest = ({ playlistId }) => {
   const [videos, setVideos] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 추가
@@ -11,7 +11,6 @@ const YoutubeTest = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const playlistId = 'PLH13Vc2FtHHguyxRNXcHgy84PHYgxBGuc';
         const playlistData = await api.youtube.fetchPlaylistItems(playlistId);
 
         if (!playlistData || !playlistData.items) {
@@ -66,7 +65,7 @@ const YoutubeTest = () => {
     };
 
     fetchData();
-  }, [searchKeyword, currentPage]); // currentPage 상태 추가
+  }, [searchKeyword, currentPage, playlistId]); // currentPage 상태 추가
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -101,34 +100,40 @@ const YoutubeTest = () => {
   console.log(searchKeyword);
 
   return (
-    <div>
-      <h1>유튜브 재생목록 검색</h1>
+    <div className="p-6">
       <form onSubmit={handleSearch}>
-        <input type="text" name="keyword" placeholder="검색어 입력" />
+        <input
+          type="text"
+          name="keyword"
+          placeholder="검색어 입력"
+          className="border p-2 mr-2"
+        />
         <button type="submit">검색</button>
       </form>
-      <h2>재생목록 결과</h2>
-      <ul>
+      <div className="grid grid-cols-3 gap-4">
         {videos.map((item) => (
-          <li key={item.contentDetails.videoId}>
-            <h2>{item.snippet.title}</h2>
-            <img
-              src={item.snippet.thumbnails.default.url}
-              alt={item.snippet.title}
-            />
-            <p>조회수: {item.statistics.viewCount}</p>
-            <p>좋아요 수: {item.statistics.likeCount}</p>
+          <div
+            key={item.contentDetails.videoId}
+            className="bg-gray-800 text-white p-4 rounded shadow flex flex-col items-center"
+          >
+            <h2 className="text-lg font-semibold mb-2">{item.snippet.title}</h2>
             <a
               href={`https://www.youtube.com/watch?v=${item.contentDetails.videoId}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Watch Video
+              <img
+                src={item.snippet.thumbnails.high.url}
+                alt={item.snippet.title}
+                className=" mb-2 transform transition-transform duration-300 hover:scale-105 hover:opacity-90"
+              />
             </a>
-          </li>
+            <p>조회수: {item.statistics.viewCount}</p>
+            <p>좋아요 수: {item.statistics.likeCount}</p>
+          </div>
         ))}
-      </ul>
-      <div>{renderPageNumbers()}</div>
+      </div>
+      <div className="mt-4 flex justify-center">{renderPageNumbers()}</div>
     </div>
   );
 };
