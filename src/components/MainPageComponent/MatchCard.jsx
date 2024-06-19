@@ -1,7 +1,6 @@
 import React from 'react';
-// import { IoMdArrowRoundForward } from 'react-icons/io';
-import icon1 from '../../assets/images/icon1.png';
-import icon2 from '../../assets/images/icon2.png';
+import Kiwoom from '../../assets/logo/Kiwoom.svg';
+import Doosan from '../../assets/logo/Doosan.svg';
 
 const MatchCard = () => {
   return (
@@ -14,8 +13,8 @@ const MatchCard = () => {
       </header>
       <section>
         <div className="w-30 flex justify-around mt-5">
-          <img src={icon1} className="w-20 h-20" />
-          <img src={icon2} className="w-20 h-20" />
+          <img src={Kiwoom} className="w-20 h-20" />
+          <img src={Doosan} className="w-20 h-20" />
         </div>
         <div>
           <p className="w-full text-center mt-5 text-white text-3xl">4 vs 2</p>
