@@ -18,9 +18,11 @@ function SeacrhResultPage() {
 
   return (
     <main className="py-12">
-      <div className="px-2">
+      <div className="px-4">
         <SearchInput />
-        <Tags words={tags} />
+        <div className="py-3">
+          <Tags words={tags} />
+        </div>
       </div>
       <ul className="py-7 flex flex-wrap">
         {list.map((item, i) => (
