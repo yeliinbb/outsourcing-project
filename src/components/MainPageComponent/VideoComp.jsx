@@ -1,46 +1,46 @@
 import React from 'react';
-import icon1 from '../../assets/images/icon1.png';
-import icon2 from '../../assets/images/icon2.png';
-import icon3 from '../../assets/images/icon3.png';
-import icon4 from '../../assets/images/icon4.png';
-import icon5 from '../../assets/images/icon5.png';
-import icon6 from '../../assets/images/icon6.png';
-import icon7 from '../../assets/images/icon7.png';
-import icon8 from '../../assets/images/icon8.png';
-import icon9 from '../../assets/images/icon9.png';
-import icon10 from '../../assets/images/icon10.png';
+import Kiwoom from '../../assets/logo/Kiwoom.svg';
+import Doosan from '../../assets/logo/Doosan.svg';
+import Samsung from '../../assets/logo/Samsung.svg';
+import SSG from '../../assets/logo/SSG.svg';
+import Kia from '../../assets/logo/Kia.svg';
+import NC from '../../assets/logo/NC.svg';
+import KT from '../../assets/logo/KT.svg';
+import LG from '../../assets/logo/LG.svg';
+import Lotte from '../../assets/logo/Lotte.svg';
+import Hanwha from '../../assets/logo/Hanwha.svg';
 import SwiperImage from './SwiperImage';
 
 const imagePaths = [
   {
-    image: icon1,
+    image: Kiwoom,
   },
   {
-    image: icon2,
+    image: Doosan,
   },
   {
-    image: icon3,
+    image: Samsung,
   },
   {
-    image: icon4,
+    image: SSG,
   },
   {
-    image: icon5,
+    image: Kia,
   },
   {
-    image: icon6,
+    image: NC,
   },
   {
-    image: icon7,
+    image: KT,
   },
   {
-    image: icon8,
+    image: LG,
   },
   {
-    image: icon9,
+    image: Lotte,
   },
   {
-    image: icon10,
+    image: Hanwha,
   },
 ];
 
