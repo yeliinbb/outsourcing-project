@@ -10,7 +10,7 @@ function Video({ item }) {
         <div className="text-sm font-semibold tracking-tighter">
           {item.title}
         </div>
-        <div className="text-xs text-gray-600">{item.channelTitle}</div>
+        <div className="text-xs">{item.channelTitle}</div>
       </div>
     </div>
   );
