@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import supabase from '../../supabase/supabaseClient';
 import Tags from '../../components/Tags';
-import Comment from '../../components/Comment';
 import { useParams } from 'react-router';
 
 const DetailPage = () => {
@@ -42,8 +41,8 @@ const DetailPage = () => {
   console.log(keyword);
   return (
     <>
-      <div className="flex flex-col bg-bgGray w-full h-screen bg-bggray">
-        <section className="border border-solid relative w-full">
+      <div className="bg-bgGray h-screen">
+        <section className="border border-solid relative">
           <img className={'w-full'} src={teamData.bannerImage} alt="" />
           <ul className="absolute top-16 right-44 flex gap-16 text-white text-xl">
             <li>
@@ -86,10 +85,9 @@ const DetailPage = () => {
             <p className="leading-8">{teamData.introduction}</p>
           </div>
         </section>
-        <section className=" bg-white mx-auto w-[100%]">
+        <section className=" bg-white mx-auto w-[90%]">
           {keyword.length > 0 && <Tags words={keyword[0]} />}
         </section>
-        <Comment />
       </div>
     </>
   );
