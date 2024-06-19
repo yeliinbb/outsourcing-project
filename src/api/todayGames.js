@@ -3,9 +3,9 @@ import { Parser } from 'json2csv'
 import fs from 'fs'
 import path from "path";
 import csvParser from "csv-parser";
-import supabase from "../supabase/supabaseClient";
-import { error } from "console";
-import { data } from "autoprefixer";
+// import supabase from "../supabase/supabaseClient";
+// import { error } from "console";
+// import { data } from "autoprefixer";
 
 export const getTodaySchedule = async () => {
   try {
@@ -25,11 +25,12 @@ export const getTodaySchedule = async () => {
         const awayTeam = game.querySelector('.away-team')?.textContent.trim().split('\n')[0]; 
         const location = game.querySelector('.venue')?.textContent.trim(); 
         
-        data.push({ date, time, homeTeam, awayTeam, location });
+        if (date && time && homeTeam && awayTeam && location) {
+          data.push({ date, time, homeTeam, awayTeam, location });
+        }
       });
       return data;
     });
-
     // console.log(schedule);
     const json2csvParser = new Parser()
     const csv = json2csvParser.parse(schedule)
@@ -42,20 +43,20 @@ export const getTodaySchedule = async () => {
     }
     fs.writeFileSync(filePath, csv)
 
-    const results = []
-    fs.createReadStream(filePath)
-      .pipe(csvParser())
-      .on('data', (data) => results.push(data))
-      .on('end', async () => {
-        const { data, error} = await supabase
-          .from('gameSchedule')
-          .insert(results)
-      })
-      if(error) {
-        console.error(error)
-      } else {
-        console.log('success', data)
-      }
+    // const results = []
+    // fs.createReadStream(filePath)
+    //   .pipe(csvParser())
+    //   .on('data', (data) => results.push(data))
+    //   .on('end', async () => {
+    //     const { data, error} = await supabase
+    //       .from('gameSchedule')
+    //       .insert(results)
+    //   })
+    //   if(error) {
+    //     console.error(error)
+    //   } else {
+    //     console.log('success', data)
+    //   }
 
     await browser.close();
   } catch (error) {
