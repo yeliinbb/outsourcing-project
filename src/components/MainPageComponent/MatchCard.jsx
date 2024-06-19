@@ -1,7 +1,7 @@
 import React from 'react';
 // import { IoMdArrowRoundForward } from 'react-icons/io';
-import icon1 from '../../images/icon1.png';
-import icon2 from '../../images/icon2.png';
+import icon1 from '../../assets/images/icon1.png';
+import icon2 from '../../assets/images/icon2.png';
 
 const MatchCard = () => {
   return (
