@@ -102,21 +102,20 @@ const RankCard = () => {
       <header className="flex justify-between items-center">
         <h1 className="text-white ml-5 mt-5 mb-5 text-l">팀 순위</h1>
       </header>
-      <section className="items-center text-center justify-center">
-        {teamRank.map((team, index) => (
-          <div
-            key={index}
-            className="w-[90%] h-[90%] mt-3 grid grid-cols-7 text-white"
-          >
-            <div>{team.number}</div>
-            <div>{team.title}</div>
-            <div>{team.game}</div>
-            <div>{team.win}</div>
-            <div>{team.draw}</div>
-            <div>{team.lose}</div>
-            <div>{team.odds}</div>
-          </div>
-        ))}
+      <section className="items-center text-center justify-center h-full">
+        <div className="w-[90%] h-[80%] mt-3 grid grid-cols-7 grid-row-10 text-white items-center gap-y-[1vh]">
+          {teamRank.map((team, index) => (
+            <React.Fragment key={index}>
+              <div>{team.number}</div>
+              <div>{team.title}</div>
+              <div>{team.game}</div>
+              <div>{team.win}</div>
+              <div>{team.draw}</div>
+              <div>{team.lose}</div>
+              <div>{team.odds}</div>
+            </React.Fragment>
+          ))}
+        </div>
       </section>
     </main>
   );
