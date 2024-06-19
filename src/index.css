@@ -8,6 +8,9 @@
   License: none (public domain)
 
 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 html,
 body,
 div,
