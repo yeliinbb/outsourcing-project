@@ -65,7 +65,7 @@ const YoutubeTest = ({ playlistId }) => {
     };
 
     fetchData();
-  }, [searchKeyword, currentPage, playlistId]); // currentPage 상태 추가
+  }, [searchKeyword, currentPage, playlistId]);
 
   const handleSearch = (event) => {
     event.preventDefault();

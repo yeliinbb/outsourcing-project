@@ -9,6 +9,7 @@ import YouTuberList from '../../components/MainPageComponent/YouTuberList';
 
 const MainPage = () => {
   const tags = ['안치홍', '안치홍', '안치홍', '안치홍', '안치홍'];
+  const playlistId = 'PLuY-NTS_5IpzwH3FfskfFOrnui5O5NlkC';
 
   return (
     <div className="flex h-screen">
@@ -27,7 +28,7 @@ const MainPage = () => {
 
         <div className="h-[100%] overflow-hidden">
           <div className="h-[60%]  rounded-2xl ">
-            <VideoComp />
+            <VideoComp playlistId={playlistId} />
           </div>
 
           <div className="flex h-[40%] mt-5">

@@ -53,9 +53,9 @@ const DetailPage = () => {
         case '5':
           return 'PLz-ZeGBrdzH3V0mpqlg5dWM8h4hogL2En';
         case '6':
-          return 'PLfsLTyo3tyK-m4UzA0Q8sqInL19ilwsuh';
+          return 'PLTk72eULaCiD4kdI_GO1vOx10l6Wjyj-n';
         case '7':
-          return 'PLE8rpoVmjLneczAUqTGQWF6ZfZdaVEJee';
+          return 'PLTk72eULaCiC3B89kzsiX1YsiwqJmstpD';
         case '8':
           return 'PLdr_-welsg4fqbQ46xiAF1T0b-0pZZwXP';
         case '9':
@@ -117,7 +117,7 @@ const DetailPage = () => {
             <p className="leading-8">{teamData.introduction}</p>
           </div>
         </section>
-        <section className=" bg-white mx-auto w-[90%]">
+        <section className="  mx-auto w-[90%]">
           {keyword.length > 0 && <Tags words={keyword[0]} />}
         </section>
         <YoutubeTest playlistId={playlistId} />
