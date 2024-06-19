@@ -4,6 +4,7 @@ import Tags from '../../components/Tags';
 
 const DetailPage = () => {
   const [teamData, setTeamData] = useState(null);
+  const [keyword, setKeyword] = useState([]);
 
   useEffect(() => {
     const selectTeamData = async () => {
@@ -19,10 +20,23 @@ const DetailPage = () => {
       }
     };
     selectTeamData();
+
+    const keywordHandler = async () => {
+      try {
+        const { data: keyword } = await supabase
+          .from('KBOTeamKeyword')
+          .select('*')
+          .eq('id', '2');
+        setKeyword(keyword);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    keywordHandler();
   }, []);
 
   if (!teamData) return;
-  console.log(teamData);
+  console.log(keyword);
   return (
     <>
       <div className="bg-bgGray h-screen">
@@ -70,7 +84,7 @@ const DetailPage = () => {
           </div>
         </section>
         <section className=" bg-white mx-auto w-[90%]">
-          {/* <Tags words={}/> */}
+          {keyword.length > 0 && <Tags words={keyword[0]} />}
         </section>
       </div>
     </>
