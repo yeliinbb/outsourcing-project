@@ -72,6 +72,10 @@ const NavBar = () => {
     navigate('/');
   };
 
+  const handleIconClick = (id) => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
     <div className="w-20 h-full bg-darkgray flex flex-col items-center justify-center">
       <img
@@ -87,6 +91,7 @@ const NavBar = () => {
               src={item.image}
               alt={item.title}
               className="mx-auto h-11 w-11 cursor-pointer"
+              onClick={() => handleIconClick(item.number)}
             />
           </div>
         ))}

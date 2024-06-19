@@ -30,7 +30,7 @@ const SwiperImage = ({ imagePaths }) => {
           className="h-full max-w-full object-cover rounded-2xl"
         />
       </div>
-      <div  
+      <div
         className="text-white mr-5 absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-black bg-opacity-60 cursor-pointer z-10"
         onClick={nextSlide}
       >

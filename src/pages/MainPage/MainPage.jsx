@@ -23,7 +23,6 @@ const MainPage = () => {
       <div className="w-3/4 h-full flex flex-col">
         <div className="flex items-center">
           <SearchInput className="mb-5" />
-          <Tags words={tags} />
         </div>
 
         <div className="h-[100%] overflow-hidden">
