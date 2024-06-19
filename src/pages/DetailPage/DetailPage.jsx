@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import Comment from '../../components/Comment';
 import Tags from '../../components/Tags';
 import supabase from '../../supabase/supabaseClient';
-import Tags from '../../components/Tags';
-import { useParams } from 'react-router';
 
 const DetailPage = () => {
   const [teamData, setTeamData] = useState(null);
