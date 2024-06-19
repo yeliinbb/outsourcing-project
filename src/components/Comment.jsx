@@ -76,7 +76,7 @@ const Comment = () => {
         {isPending && <div>댓글이 로딩중입니다...</div>}
         {isSuccess &&
           comments.map((comment, index) => {
-            console.log(comment['page_id']);
+            // console.log(comment['page_id']);
             if (comment['page_id'] == pageId) {
               const date = comment.created_at.split('.', 1)[0].split('T', 2)[0];
               const time = comment.created_at.split('.', 1)[0].split('T', 2)[1];
