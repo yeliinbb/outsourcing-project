@@ -3,9 +3,6 @@ import { Parser } from 'json2csv'
 import fs from 'fs'
 import path from "path";
 import csvParser from "csv-parser";
-// import supabase from "../supabase/supabaseClient";
-// import { error } from "console";
-// import { data } from "autoprefixer";
 
 export const getTodaySchedule = async () => {
   try {
@@ -42,21 +39,6 @@ export const getTodaySchedule = async () => {
       fs.mkdirSync(dirPath, {recursive : true})
     }
     fs.writeFileSync(filePath, csv)
-
-    // const results = []
-    // fs.createReadStream(filePath)
-    //   .pipe(csvParser())
-    //   .on('data', (data) => results.push(data))
-    //   .on('end', async () => {
-    //     const { data, error} = await supabase
-    //       .from('gameSchedule')
-    //       .insert(results)
-    //   })
-    //   if(error) {
-    //     console.error(error)
-    //   } else {
-    //     console.log('success', data)
-    //   }
 
     await browser.close();
   } catch (error) {
