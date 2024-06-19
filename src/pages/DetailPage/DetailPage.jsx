@@ -1,7 +1,7 @@
-import supabase from '../../supabase/supabaseClient';
-import Tags from '../../components/Tags';
-import { useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router';
+import Tags from '../../components/Tags';
+import supabase from '../../supabase/supabaseClient';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -21,14 +21,15 @@ const DetailPage = () => {
   });
 
   const keywordHandler = async () => {
-    const { data: keyword } = await supabase
+    const { data } = await supabase
       .from('KBOTeamKeyword')
-      .select('*')
-      .eq('id', id);
-    return keyword;
+      .select('keyword')
+      .eq('id', id)
+      .single();
+    return data.keyword;
   };
 
-  const { data: keyword = [] } = useQuery({
+  const { data: keywords = [] } = useQuery({
     queryKey: ['keyword', id],
     queryFn: keywordHandler,
   });
@@ -82,7 +83,7 @@ const DetailPage = () => {
           </div>
         </section>
         <section className="mx-auto w-[90%]">
-          {keyword.length > 0 && <Tags words={keyword[0]} />}
+          {keywords.length > 0 && <Tags words={keywords} />}
         </section>
       </div>
     </>
