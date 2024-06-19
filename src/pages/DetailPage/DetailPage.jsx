@@ -1,42 +1,40 @@
-import { useEffect, useState } from 'react';
 import supabase from '../../supabase/supabaseClient';
 import Tags from '../../components/Tags';
+import { useParams } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
 
 const DetailPage = () => {
-  const [teamData, setTeamData] = useState(null);
-  const [keyword, setKeyword] = useState([]);
+  const { id } = useParams();
 
-  useEffect(() => {
-    const selectTeamData = async () => {
-      try {
-        const { data: teamData } = await supabase
-          .from('KBOTeam')
-          .select('*')
-          .eq('id', '2');
-        console.log(teamData);
-        setTeamData(teamData[0]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    selectTeamData();
+  const selectTeamData = async () => {
+    const { data: teamData } = await supabase
+      .from('KBOTeam')
+      .select('*')
+      .eq('id', id);
+    console.log(teamData);
+    return teamData[0];
+  };
 
-    const keywordHandler = async () => {
-      try {
-        const { data: keyword } = await supabase
-          .from('KBOTeamKeyword')
-          .select('*')
-          .eq('id', '2');
-        setKeyword(keyword);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    keywordHandler();
-  }, []);
+  const { data: teamData } = useQuery({
+    queryKey: ['teamData', id],
+    queryFn: selectTeamData,
+  });
+
+  const keywordHandler = async () => {
+    const { data: keyword } = await supabase
+      .from('KBOTeamKeyword')
+      .select('*')
+      .eq('id', id);
+    return keyword;
+  };
+
+  const { data: keyword = [] } = useQuery({
+    queryKey: ['keyword', id],
+    queryFn: keywordHandler,
+  });
 
   if (!teamData) return;
-  console.log(keyword);
+
   return (
     <>
       <div className="bg-bgGray h-screen">
@@ -71,8 +69,8 @@ const DetailPage = () => {
               <div className="text-center">
                 <p className="mb-2 font-bold">우승 기록</p>
                 <div>
-                  {teamData.winYears.map((year) => (
-                    <div>{year}</div>
+                  {teamData.winYears.map((year, index) => (
+                    <div key={index}>{year}</div>
                   ))}
                 </div>
               </div>
