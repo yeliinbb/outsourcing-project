@@ -41,9 +41,9 @@ const WeatherByGame = () => {
   }
 
   return (
-    <div className="flex flex-col w-[70%] h-[77%] ml-5 bg-darkgray rounded-2xl text-white p-5 gap-2 ">
+    <div className="grid grid-rows-custom-layout flex-col w-[70%] h-[77%] ml-5 bg-darkgray rounded-2xl text-white p-5 gap-2 ">
       <p>경기 매치</p>
-      <ul className="w-full h-full flex flex-col gap-0.5">
+      <ul className=" w-full h-full grid auto-rows-[minmax(0,_0.8fr)] gap-0.5">
         {isGameScheduleSuccess &&
           gameInfo.map((game, index) => {
             return (

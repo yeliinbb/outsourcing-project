@@ -89,7 +89,9 @@ const DetailPage = () => {
         <section className=" bg-white mx-auto w-[100%]">
           {keyword.length > 0 && <Tags words={keyword[0]} />}
         </section>
-        <Comment />
+        <section className="w-full h-full p-7 text-white">
+          <Comment />
+        </section>
       </div>
     </>
   );
