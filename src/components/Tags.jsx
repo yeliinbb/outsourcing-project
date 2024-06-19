@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom/dist';
 
-function Tags({ words = [] }) {
+function Tags({ words = {} }) {
   return (
     <div className="pt-3 flex flex-wrap gap-1">
-      {words.map((word, i) => (
+      {words.keyword.map((word, i) => (
         <Link
           key={i}
           to={`/search/${word}`}

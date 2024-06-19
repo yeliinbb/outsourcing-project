@@ -1,9 +1,13 @@
 import React from 'react';
-import WeatherByGame from '../../components/WeatherByGame';
+import MatchCard from '../../components/MainPageComponent/MatchCard';
+import RankCard from '../../components/MainPageComponent/RankCard';
+import WeatherByGame from '../../components/MainPageComponent/WeatherByGame';
 
 const MainPage = () => {
   return (
-    <div className="h-full w-full">
+    <div className="w-full h-full">
+      <MatchCard />
+      <RankCard />
       <WeatherByGame />
     </div>
   );
