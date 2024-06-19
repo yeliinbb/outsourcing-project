@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import supabase from '../../supabase/supabaseClient';
 import Tags from '../../components/Tags';
 import Comment from '../../components/Comment';
+import { useParams } from 'react-router';
 
 const DetailPage = () => {
   const [teamData, setTeamData] = useState(null);
   const [keyword, setKeyword] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     const selectTeamData = async () => {
@@ -13,7 +15,7 @@ const DetailPage = () => {
         const { data: teamData } = await supabase
           .from('KBOTeam')
           .select('*')
-          .eq('id', '2');
+          .eq('id', id);
         console.log(teamData);
         setTeamData(teamData[0]);
       } catch (error) {
@@ -27,14 +29,14 @@ const DetailPage = () => {
         const { data: keyword } = await supabase
           .from('KBOTeamKeyword')
           .select('*')
-          .eq('id', '2');
+          .eq('id', id);
         setKeyword(keyword);
       } catch (error) {
         console.log(error);
       }
     };
     keywordHandler();
-  }, []);
+  }, [id]);
 
   if (!teamData) return;
   console.log(keyword);
@@ -72,8 +74,8 @@ const DetailPage = () => {
               <div className="text-center">
                 <p className="mb-2 font-bold">우승 기록</p>
                 <div>
-                  {teamData.winYears.map((year) => (
-                    <div>{year}</div>
+                  {teamData.winYears.map((year, index) => (
+                    <div key={index}>{year}</div>
                   ))}
                 </div>
               </div>

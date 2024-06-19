@@ -72,13 +72,17 @@ const NavBar = () => {
     navigate('/');
   };
 
+  const handleIconClick = (id) => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
     <div className="w-20 h-full bg-darkgray flex flex-col items-center justify-center">
       <img
         onClick={handleHomeClick}
         src={home}
         alt="homeIcon"
-        className="mb-10"
+        className="mb-10 cursor-pointer"
       />
       <div className="grid gap-3 justify-items-center">
         {imagePaths.map((item, index) => (
@@ -86,7 +90,8 @@ const NavBar = () => {
             <img
               src={item.image}
               alt={item.title}
-              className="mx-auto h-11 w-11"
+              className="mx-auto h-11 w-11 cursor-pointer"
+              onClick={() => handleIconClick(item.number)}
             />
           </div>
         ))}

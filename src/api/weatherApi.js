@@ -21,7 +21,10 @@ export const fetchWithWeatherData = async (gameScheduleData) => {
 
   for (const game of gameScheduleData) {
     try {
-      const weather = await fetchWeatherData(game.location);
+      const location = game.location.includes('-')
+        ? game.location.split('-', 1)
+        : game.location;
+      const weather = await fetchWeatherData(location);
       results.push({ ...game, weather: weather.weather[0].main });
     } catch (error) {
       console.error(`Error fetching weather data for ${game.location}:`, error);

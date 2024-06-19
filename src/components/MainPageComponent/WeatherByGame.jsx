@@ -7,19 +7,6 @@ import GameList from './GameList';
 const WeatherByGame = () => {
   const [gameInfo, setGameInfo] = useState([]);
 
-  // 날씨 데이터 불러오기 위해 임시로 적어둔 도시 이름 데이터
-  // const cityNames = {
-  //   Seoul: 'Seoul',
-  //   Incheon: 'Incheon',
-  //   Busan: 'Busan',
-  //   Gwangju: 'Gwangju',
-  //   Daegu: 'Daegu',
-  //   Cheongju: 'Cheongju',
-  //   Changwon: 'Changwon',
-  //   Suwon: 'Suwon',
-  //   Daejeon: 'Daejeon',
-  // };
-
   // 게임 스케줄 데이터 불러오기
   const {
     data: gameScheduleData,
@@ -54,8 +41,9 @@ const WeatherByGame = () => {
   }
 
   return (
-    <div className="w-[70%] h-[77%] ml-5 bg-darkgray rounded-2xl text-white">
-      <ul className="w-full flex flex-col p-3 gap-0.5">
+    <div className="flex flex-col w-[70%] h-[77%] ml-5 bg-darkgray rounded-2xl text-white p-5 gap-2 ">
+      <p>경기 매치</p>
+      <ul className="w-full h-full flex flex-col gap-0.5">
         {isGameScheduleSuccess &&
           gameInfo.map((game, index) => {
             return (
