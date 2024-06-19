@@ -14,16 +14,16 @@ const useLoginStore = create(
 );
 
 export function login(user) {
-  useLoginStore.setState({ isLoggedIn: true, user: user });
+  useLoginStore.setState({ isLoggedIn: true, user });
 }
 
 export function logout() {
   useLoginStore.setState({ isLoggedIn: false });
 }
 
-// export function getSession() {
-//   return useLoginStore.getState().session;
-// }
+export function getSession() {
+  return useLoginStore.getState();
+}
 
 export function useSession() {
   return useLoginStore();
