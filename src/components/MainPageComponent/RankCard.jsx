@@ -96,13 +96,13 @@ const teamRank = [
 const RankCard = () => {
   return (
     <main
-      className="w-full h-[95%] bg-darkgray ml-5 rounded-2xl overflow-hidden"
+      className="items-center text-center justify-center w-full h-[95%] bg-darkgray ml-5 rounded-2xl overflow-hidden"
       style={{ borderRadius: '1rem' }}
     >
       <header className="flex justify-between items-center">
         <h1 className="text-white ml-5 mt-5 mb-5 text-l">팀 순위</h1>
       </header>
-      <section className="items-center text-center justify-center h-full">
+      <section className="flex text-center justify-center h-full max-h-[90%] max-w-[90%]">
         <div className="w-[90%] h-[80%] mt-3 grid grid-cols-7 grid-row-10 text-white items-center gap-y-[1vh]">
           {teamRank.map((team, index) => (
             <React.Fragment key={index}>

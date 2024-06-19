@@ -8,6 +8,10 @@ module.exports = {
         bgGray: '#4F5561',
         darkgray: '#25272B',
       },
+      gridTemplateRows: {
+        // 커스텀 유틸리티 클래스 추가
+        'custom-layout': '1fr 9fr',
+      },
       screens: {
         sm: '640px',
         // => @media (min-width: 640px) { ... }
