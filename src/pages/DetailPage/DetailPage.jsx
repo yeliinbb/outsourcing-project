@@ -83,7 +83,7 @@ const DetailPage = () => {
             <p className="leading-8">{teamData.introduction}</p>
           </div>
         </section>
-        <section className=" bg-white mx-auto w-[90%]">
+        <section className="mx-auto w-[90%]">
           {keyword.length > 0 && <Tags words={keyword[0]} />}
         </section>
       </div>
