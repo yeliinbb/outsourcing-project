@@ -1,43 +1,41 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router';
 import Tags from '../../components/Tags';
 import supabase from '../../supabase/supabaseClient';
 
 const DetailPage = () => {
-  const [teamData, setTeamData] = useState(null);
-  const [keyword, setKeyword] = useState([]);
   const { id } = useParams();
 
-  useEffect(() => {
-    const selectTeamData = async () => {
-      try {
-        const { data: teamData } = await supabase
-          .from('KBOTeam')
-          .select('*')
-          .eq('id', id);
-        console.log(teamData);
-        setTeamData(teamData[0]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    selectTeamData();
+  const selectTeamData = async () => {
+    const { data: teamData } = await supabase
+      .from('KBOTeam')
+      .select('*')
+      .eq('id', id);
+    console.log(teamData);
+    return teamData[0];
+  };
 
-    const keywordHandler = async () => {
-      try {
-        const {
-          data: [result],
-        } = await supabase.from('KBOTeamKeyword').select('*').eq('id', id);
-        setKeyword(result.keyword);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    keywordHandler();
-  }, [id]);
+  const { data: teamData } = useQuery({
+    queryKey: ['teamData', id],
+    queryFn: selectTeamData,
+  });
+
+  const keywordHandler = async () => {
+    const { data } = await supabase
+      .from('KBOTeamKeyword')
+      .select('keyword')
+      .eq('id', id)
+      .single();
+    return data.keyword;
+  };
+
+  const { data: keywords = [] } = useQuery({
+    queryKey: ['keyword', id],
+    queryFn: keywordHandler,
+  });
 
   if (!teamData) return;
-  console.log(keyword);
+
   return (
     <>
       <div className="bg-bgGray h-screen">
@@ -84,8 +82,8 @@ const DetailPage = () => {
             <p className="leading-8">{teamData.introduction}</p>
           </div>
         </section>
-        <section className=" bg-white mx-auto w-[90%]">
-          {keyword.length > 0 && <Tags words={keyword} />}
+        <section className="mx-auto w-[90%]">
+          {keywords.length > 0 && <Tags words={keywords} />}
         </section>
       </div>
     </>
