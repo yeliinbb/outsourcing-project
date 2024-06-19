@@ -54,7 +54,8 @@ const WeatherByGame = () => {
   }
 
   return (
-    <div className="w-6/12 h-3/6 bg-bgGray rounded-xl text-white">
+    // <div className="w-6/12 h-3/6 bg-bgGray rounded-xl text-white">
+    <div className="w-[70%] h-[77%] ml-5 bg-darkgray rounded-2xl text-white">
       <ul className="w-full flex flex-col p-3 gap-0.5">
         {isGameScheduleSuccess &&
           gameInfo.map((game, index) => {
