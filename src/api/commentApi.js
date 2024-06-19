@@ -15,13 +15,15 @@ export const getComments = async () => {
 
 export const addComments = async (comment) => {
   try {
-    const { body, created_at, id } = comment;
+    const { body, created_at, id, page_id } = comment;
     if (!body) {
       throw new Error('Body text are required');
     }
     const { data, error } = await supabase
       .from('comments')
-      .insert([{ body: body, id: id, created_at: created_at }]);
+      .insert([
+        { body: body, id: id, created_at: created_at, page_id: page_id },
+      ]);
     if (error) {
       throw error;
     }

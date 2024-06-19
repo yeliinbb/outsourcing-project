@@ -7,10 +7,13 @@ import {
 import React, { useRef, useState } from 'react';
 import { addComments, getComments } from '../api/commentApi';
 import uuid4 from 'uuid4';
+import { useParams } from 'react-router';
 
 const Comment = () => {
   const commentRef = useRef(null);
   const queryClient = useQueryClient();
+  const param = useParams();
+  const pageId = param.id;
 
   const {
     data: comments,
@@ -35,6 +38,7 @@ const Comment = () => {
       id: uuid4(),
       body: commentBody,
       created_at: new Date().toISOString(),
+      page_id: pageId,
     };
 
     if (isSuccess) {
@@ -72,15 +76,20 @@ const Comment = () => {
         {isPending && <div>댓글이 로딩중입니다...</div>}
         {isSuccess &&
           comments.map((comment, index) => {
-            const date = comment.created_at.split('.', 1)[0].split('T', 2)[0];
-            const time = comment.created_at.split('.', 1)[0].split('T', 2)[1];
-            // console.log(date, time);
-            return (
-              <li className="flex justify-between p-2" key={index}>
-                <span>{comment.body}</span>
-                <span>{date + ' ' + time}</span>
-              </li>
-            );
+            // console.log(comment['page_id']);
+            if (comment['page_id'] == pageId) {
+              const date = comment.created_at.split('.', 1)[0].split('T', 2)[0];
+              const time = comment.created_at.split('.', 1)[0].split('T', 2)[1];
+              // console.log(date, time);
+              return (
+                <li className="flex justify-between p-2" key={index}>
+                  <span>{comment.body}</span>
+                  <span>{date + ' ' + time}</span>
+                </li>
+              );
+            } else {
+              return null;
+            }
           })}
       </ul>
     </div>
