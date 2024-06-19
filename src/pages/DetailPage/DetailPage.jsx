@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import Comment from '../../components/Comment';
 import Tags from '../../components/Tags';
 import supabase from '../../supabase/supabaseClient';
 
@@ -26,10 +25,9 @@ const DetailPage = () => {
 
     const keywordHandler = async () => {
       try {
-        const { data: [result] } = await supabase
-          .from('KBOTeamKeyword')
-          .select('*')
-          .eq('id', id);
+        const {
+          data: [result],
+        } = await supabase.from('KBOTeamKeyword').select('*').eq('id', id);
         setKeyword(result.keyword);
       } catch (error) {
         console.log(error);
@@ -42,8 +40,8 @@ const DetailPage = () => {
   console.log(keyword);
   return (
     <>
-      <div className="flex flex-col bg-bgGray w-full h-screen bg-bggray">
-        <section className="border border-solid relative w-full">
+      <div className="bg-bgGray h-screen">
+        <section className="border border-solid relative">
           <img className={'w-full'} src={teamData.bannerImage} alt="" />
           <ul className="absolute top-16 right-44 flex gap-16 text-white text-xl">
             <li>
@@ -89,7 +87,6 @@ const DetailPage = () => {
         <section className=" bg-white mx-auto w-[90%]">
           {keyword.length > 0 && <Tags words={keyword} />}
         </section>
-        <Comment />
       </div>
     </>
   );
