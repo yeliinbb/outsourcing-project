@@ -10,7 +10,7 @@ module.exports = {
       },
       gridTemplateRows: {
         // 커스텀 유틸리티 클래스 추가
-        'custom-layout': '1fr 7fr',
+        'custom-layout': '1fr 9fr',
       },
       screens: {
         sm: '640px',
