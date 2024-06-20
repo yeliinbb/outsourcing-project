@@ -43,7 +43,7 @@ const GameList = ({ gameInfo, weatherInfo }) => {
   };
 
   return (
-    <li className="flex items-center justify-between p-3 border-y-neutral-50 border-solid border-b gap-20 max-h-10">
+    <li className="flex items-center justify-between p-2 border-y-neutral-50 border-solid border-b gap-20 ">
       <div className="flex items-center justify-between gap-8 w-[50%]">
         <div className="w-fit gap-8 flex ">
           <span>{gameInfo.time}</span>
