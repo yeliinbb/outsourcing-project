@@ -1,5 +1,5 @@
 // SeacrhResultPage.js
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import api from '../../api/api';
 import SearchInput from '../../components/SearchInput';
@@ -9,20 +9,14 @@ import Video from '../../components/Video';
 function SeacrhResultPage() {
   const [params] = useSearchParams();
   const keyword = params.get('w');
-  const [list, setList] = useState([]);
 
-  useEffect(() => {
-    const fetchPlaylistItems = async () => {
-      const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
-      const response = await api.youtube.fetchPlaylistItems(playlistId);
-      const items = response.items; // 가져온 데이터에서 items를 추출합니다.
+  const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
+  const { data: youtubeList } = useQuery({
+    queryKey: ['youtube', { playlistId }],
+    queryFn: () => api.youtube.fetchPlaylistItems(playlistId),
+  });
 
-      setList(items);
-    };
-    fetchPlaylistItems();
-  }, []);
-
-  const videos = list.filter(
+  const videos = youtubeList.filter(
     (item) =>
       item.snippet.title.toLowerCase().includes(keyword?.toLowerCase()) ||
       item.snippet.description.toLowerCase().includes(keyword?.toLowerCase())
