@@ -8,19 +8,23 @@ import Video from '../../components/Video';
 
 function SeacrhResultPage() {
   const [params] = useSearchParams();
-  const keyword = params.get('w');
+  const keyword = params.get('w') || '';
 
   const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
-  const { data: youtubeList } = useQuery({
+  const { data, isSuccess } = useQuery({
     queryKey: ['youtube', { playlistId }],
-    queryFn: () => api.youtube.fetchPlaylistItems(playlistId),
+    queryFn: async () => api.youtube.fetchPlaylistItems(playlistId),
   });
 
-  const videos = youtubeList.filter(
-    (item) =>
-      item.snippet.title.toLowerCase().includes(keyword?.toLowerCase()) ||
-      item.snippet.description.toLowerCase().includes(keyword?.toLowerCase())
-  );
+  const videos = isSuccess
+    ? data.items?.filter(
+        (item) =>
+          item.snippet.title.toLowerCase().includes(keyword?.toLowerCase()) ||
+          item.snippet.description
+            .toLowerCase()
+            .includes(keyword?.toLowerCase())
+      )
+    : [];
 
   return (
     <main className="py-12">
