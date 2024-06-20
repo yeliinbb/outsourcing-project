@@ -20,7 +20,7 @@ const Comment = () => {
     isPending,
     isSuccess,
   } = useQuery({
-    queryKey: ['comments'],
+    queryKey: ['comments', pageId],
     queryFn: getComments,
   });
 
