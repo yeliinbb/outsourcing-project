@@ -1,5 +1,5 @@
+import { APP_BASE_URL } from '../keys';
 import supabase from '../supabase/supabaseClient';
-
 class UserAPI {
   #client;
 
@@ -10,6 +10,7 @@ class UserAPI {
   async signIn() {
     const { data } = await this.#client.auth.signInWithOAuth({
       provider: 'github',
+      redirectTo: APP_BASE_URL,
     });
 
     return data;

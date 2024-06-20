@@ -8,7 +8,6 @@ export const fetchGameSchedule = async () => {
     if (error) {
       throw error;
     }
-    console.log('data => ', gameSchedule);
     return gameSchedule;
   } catch (error) {
     console.error('Failed to fetch game schedule:', error.message);

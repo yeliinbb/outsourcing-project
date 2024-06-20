@@ -17,8 +17,6 @@ const WeatherByGame = () => {
     queryFn: fetchGameSchedule,
   });
 
-  console.log('gameScheduleData => ', gameScheduleData);
-
   // 데이터 병합 및 상태 업데이트
   useEffect(() => {
     const fetchWeatherForGames = async () => {
@@ -33,8 +31,6 @@ const WeatherByGame = () => {
     };
     fetchWeatherForGames();
   }, [isGameScheduleSuccess, gameScheduleData]);
-
-  console.log('gameInfo => ', gameInfo);
 
   if (isGameSchedulePending) {
     return <div>데이터를 가져오는 중입니다...</div>;

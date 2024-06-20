@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router';
 import DetailPageTags from '../../components/DetailPageTags';
 import supabase from '../../supabase/supabaseClient';
+import Comment from '../../components/Comment';
 import YoutubeTest from '../../components/YoutubeTest';
 import { useEffect, useState } from 'react';
 
@@ -134,6 +135,7 @@ const DetailPage = () => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
+      <Comment />
     </div>
   );
 };
