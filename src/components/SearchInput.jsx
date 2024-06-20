@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import IconSearch from '../assets/icons/search.svg';
 
-function SearchInput({ intialValue = '' }) {
-  const [keyword, setKeyword] = useState(intialValue);
+function SearchInput({ value = '' }) {
+  const [keyword, setKeyword] = useState(value);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setKeyword(value);
+  }, [value]);
 
   const handleOnSearch = (e) => {
     e.preventDefault();

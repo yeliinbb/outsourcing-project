@@ -6,7 +6,7 @@ import SearchInput from '../../components/SearchInput';
 import Tags from '../../components/Tags';
 import Video from '../../components/Video';
 
-const tags = ['하이라이트', '안치홍', '안치홍', '안치홍', '안치홍'];
+const tags = ['하이라이트', '9회', '안치홍', '안치홍', '안치홍'];
 const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
 
 function SeacrhResultPage() {
@@ -33,7 +33,7 @@ function SeacrhResultPage() {
   return (
     <main className="py-12">
       <div className="px-4">
-        <SearchInput intialValue={keyword} />
+        <SearchInput value={keyword} />
         <div className="py-3">
           <Tags words={tags} />
         </div>
