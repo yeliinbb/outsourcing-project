@@ -5,14 +5,13 @@ import YoutubeAPI from '../../api/YoutubeApi';
 import SearchInput from '../../components/SearchInput';
 import Tags from '../../components/Tags';
 import Video from '../../components/Video';
-import initialData from './InitialSearchResult.json';
 
 const tags = ['하이라이트', '안치홍', '안치홍', '안치홍', '안치홍'];
 const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
 
 function SeacrhResultPage() {
   const { keyword } = useParams();
-  const [list, setList] = useState(initialData.items);
+  const [list, setList] = useState([]);
 
   useEffect(() => {
     const fetchPlaylistItems = async () => {
