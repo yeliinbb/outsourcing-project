@@ -40,7 +40,7 @@ function SeacrhResultPage() {
         <ul className="py-7 flex flex-wrap">
           {!videos.length ? (
             <div className="">
-              <h3>검색 결과가 없습니다. △사람들이 많이 사용하는 검색어△</h3>
+              <h3>검색 결과가 없습니다.</h3>
             </div>
           ) : (
             videos.map((item, i) => (
