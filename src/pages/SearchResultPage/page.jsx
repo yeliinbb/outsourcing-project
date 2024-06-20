@@ -39,8 +39,8 @@ function SeacrhResultPage() {
 
   const videos = list.filter(
     (item) =>
-      item.snippet.title.includes(keyword) ||
-      item.snippet.description.includes(keyword)
+      item.snippet.title.toLowerCase().includes(keyword.toLowerCase()) ||
+      item.snippet.description.toLowerCase().includes(keyword.toLowerCase())
   );
 
   return (
