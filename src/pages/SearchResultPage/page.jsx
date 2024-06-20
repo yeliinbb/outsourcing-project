@@ -1,34 +1,19 @@
 // SeacrhResultPage.js
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 import api from '../../api/api';
 import SearchInput from '../../components/SearchInput';
 import Tags from '../../components/Tags';
 import Video from '../../components/Video';
 
-const tags = ['하이라이트', 'KBO', '야구'];
-const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
-
 function SeacrhResultPage() {
-  const { keyword } = useParams();
-  const tags = [
-    '하이라이트',
-    'SSG',
-    '롯데 ',
-    'NC',
-    'KIA',
-    '삼성',
-    '두산',
-    'LG',
-    'KT',
-    '한화',
-    '키움',
-  ];
-  const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
+  const [params] = useSearchParams();
+  const keyword = params.get('w');
   const [list, setList] = useState([]);
 
   useEffect(() => {
     const fetchPlaylistItems = async () => {
+      const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
       const response = await api.youtube.fetchPlaylistItems(playlistId);
       const items = response.items; // 가져온 데이터에서 items를 추출합니다.
 
@@ -39,8 +24,8 @@ function SeacrhResultPage() {
 
   const videos = list.filter(
     (item) =>
-      item.snippet.title.toLowerCase().includes(keyword.toLowerCase()) ||
-      item.snippet.description.toLowerCase().includes(keyword.toLowerCase())
+      item.snippet.title.toLowerCase().includes(keyword?.toLowerCase()) ||
+      item.snippet.description.toLowerCase().includes(keyword?.toLowerCase())
   );
 
   return (
@@ -48,7 +33,7 @@ function SeacrhResultPage() {
       <div className="px-4">
         <SearchInput value={keyword} />
         <div className="py-3">
-          <Tags words={tags} />
+          <Tags words={TAGS} />
         </div>
         <ul className="py-7 flex flex-wrap">
           {!videos.length ? (
@@ -69,3 +54,17 @@ function SeacrhResultPage() {
 }
 
 export default SeacrhResultPage;
+
+const TAGS = [
+  '하이라이트',
+  'SSG',
+  '롯데 ',
+  'NC',
+  'KIA',
+  '삼성',
+  '두산',
+  'LG',
+  'KT',
+  '한화',
+  '키움',
+];
