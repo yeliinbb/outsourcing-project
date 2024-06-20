@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logoHB from '../../assets/hb-logo.png';
 import IconGithub from '../../assets/icons/github.svg';
 import MatchCard from '../../components/MainPageComponent/MatchCard';
 import RankCard from '../../components/MainPageComponent/RankCard';
@@ -15,7 +16,8 @@ const MainPage = () => {
 
   return (
     <div className="flex h-screen">
-      <div className="w-1/4 h-full flex flex-col">
+      <div className="w-1/4 h-full flex flex-col justify-center">
+        <img src={logoHB} className="ml-5 mt-5" />
         <div className="w-full h-72 flex items-center justify-center">
           <MatchCard />
         </div>
@@ -26,7 +28,7 @@ const MainPage = () => {
       <div className="w-3/4 h-full flex flex-col">
         <div className="flex items-end justify-between">
           <SearchInput className="mb-5" />
-          <span className="flex flex-row gap-5">
+          <span className="flex flex-row gap-5 items-center">
             {session.isLoggedIn ? <SignOutButton /> : <SignInButton />}
             <Link
               to="https://github.com/FEsunmin/outsourcing-project"
