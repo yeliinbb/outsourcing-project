@@ -4,7 +4,6 @@ const APIkey = import.meta.env.VITE_WEATHER_KEY;
 
 // 날씨 데이터 받아오기
 export const fetchWeatherData = async (cityName) => {
-  //   console.log(cityName);
   const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIkey}&units=metric`;
   try {
     const response = await axios.get(weatherUrl);

@@ -53,14 +53,14 @@ const Comment = () => {
     };
 
     if (isSuccess) {
-      console.log('newComment => ', newComment);
+      // console.log('newComment => ', newComment);
       mutationAdd.mutate(newComment);
       commentRef.current.value = '';
     }
   };
 
   if (isSuccess) {
-    console.log('comments => ', comments);
+    // console.log('comments => ', comments);
   }
 
   return (
@@ -90,7 +90,7 @@ const Comment = () => {
             comments.map((comment, index) => {
               if (comment['page_id'] == pageId) {
                 const date = comment.created_at
-                  .split('.', 1)[0]
+                  .split('+', 1)[0]
                   .split('T', 2)[0];
                 const time = comment.created_at
                   .split('+', 1)[0]
