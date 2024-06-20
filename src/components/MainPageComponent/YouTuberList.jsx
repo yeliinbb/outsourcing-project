@@ -7,16 +7,19 @@ const youtuberList = [
     number: 1,
     name: '홍프로',
     img: hongpro,
+    link: 'https://www.youtube.com/@HongproSports',
   },
   {
     number: 2,
     name: '크보5프너',
     img: cbo5penr,
+    link: 'https://www.youtube.com/@kboopener',
   },
   {
     number: 3,
     name: '키스톤플레이',
     img: keystoneplay,
+    link: 'https://www.youtube.com/@keystone-play',
   },
   // {
   //  number : 1,
@@ -37,11 +40,13 @@ const YouTuberList = () => {
             <h1 className="text-lg font-semibold ml-5 mt-2 text-white">
               {youtuber.number}
             </h1>
-            <img
-              src={youtuber.img}
-              className="w-12 h-12 rounded-full mt-2 ml-5"
-            />
-            <li className="mt-2 ml-5 text-white">{youtuber.name}</li>
+            <a href={youtuber.link} className="flex items-center">
+              <img
+                src={youtuber.img}
+                className="w-12 h-12 rounded-full mt-2 ml-5"
+              />
+              <li className="mt-2 ml-5 text-white">{youtuber.name}</li>
+            </a>
           </div>
         ))}
       </ul>
