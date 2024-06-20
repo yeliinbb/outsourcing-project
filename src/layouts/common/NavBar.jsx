@@ -10,7 +10,7 @@ import KT from '../../assets/logo/KT.svg';
 import LG from '../../assets/logo/LG.svg';
 import Lotte from '../../assets/logo/Lotte.svg';
 import Hanwha from '../../assets/logo/Hanwha.svg';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 const imagePaths = [
   {
@@ -66,6 +66,9 @@ const imagePaths = [
 ];
 
 const NavBar = () => {
+  const { id } = useParams();
+  console.log(id);
+
   const navigate = useNavigate();
 
   const handleHomeClick = () => {
@@ -86,7 +89,10 @@ const NavBar = () => {
       />
       <div className="grid gap-3 justify-items-center">
         {imagePaths.map((item, index) => (
-          <div key={index} className="col-sm-12">
+          <div
+            key={index}
+            className={`col-sm-12 w-[79px] p-1 ${item.number === +id && 'bg-[#D9D9D9]'}`}
+          >
             <img
               src={item.image}
               alt={item.title}

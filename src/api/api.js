@@ -1,5 +1,5 @@
 import UserAPI from './UserApi';
-import YoutubeAPI from './YoutubeApi';
+import YoutubeAPI from './youtubeApi';
 
 class API {
   constructor() {
