@@ -23,7 +23,7 @@ const MainPage = () => {
         <div className="w-full h-72 flex items-center justify-center">
           <MatchCard />
         </div>
-        <div className="flex-1 pr-5">
+        <div className="flex-1 pr-5 mt-5">
           <RankCard />
         </div>
       </div>
