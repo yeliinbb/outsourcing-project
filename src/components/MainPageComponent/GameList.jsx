@@ -43,8 +43,8 @@ const GameList = ({ gameInfo, weatherInfo }) => {
 
   return (
     <li className="flex items-center justify-between p-2 border-y-neutral-50 border-solid border-b gap-20 ">
-      <div className="flex items-center justify-between gap-8 w-[50%]">
-        <div className="w-fit gap-8 flex ">
+      <div className="flex items-center justify-between gap-8 ">
+        <div className="min-w-[150px] gap-8 flex ">
           <span>{gameInfo.time}</span>
           <span>{gameInfo.location.split('-', 1)}</span>
         </div>
@@ -55,15 +55,15 @@ const GameList = ({ gameInfo, weatherInfo }) => {
           />
         </div>
       </div>
-      <div className="flex items-center justify-between gap-3 w-full">
-        <div className="flex items-center gap-3 w-[50%]">
-          <p>{gameInfo.homeTeam}</p>
-          <img src={logos[gameInfo.homeTeam]} className="w-8 h-8" />
-        </div>
-        <span>vs</span>
-        <div className="flex items-center justify-end gap-3 w-[50%]">
-          <img src={logos[gameInfo.awayTeam]} className="w-8 h-8" />
+      <div className="flex items-center gap-3">
+        <div className="flex justify-start items-center gap-3 min-w-[180px]">
           <p>{gameInfo.awayTeam}</p>
+          <img src={logos[gameInfo.awayTeam]} className="w-8 h-8" />
+        </div>
+        <div>vs</div>
+        <div className="flex items-center justify-end gap-3 min-w-[180px]">
+          <img src={logos[gameInfo.homeTeam]} className="w-8 h-8" />
+          <p>{gameInfo.homeTeam}</p>
           <div className="w-4 h-4 bg-bgGray flex items-center justify-center p-3 rounded-lg">
             <span>홈</span>
           </div>

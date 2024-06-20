@@ -1,10 +1,9 @@
 import puppeteer from 'puppeteer';
-import { Parser } from 'json2csv';
-import fs from 'fs';
+import { Parser } from 'json2csv'
+import fs from 'fs'
 import path from 'path';
-import csvParser from 'csv-parser';
 
-export const getTodaySchedule = async () => {
+export const getGameResult = async () => {
   try {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
@@ -14,15 +13,17 @@ export const getTodaySchedule = async () => {
     );
     await page.goto('https://mykbostats.com', { waitUntil: 'networkidle2' });
 
-    const schedule = await page.evaluate(() => {
-      const games = document.querySelectorAll('.game-line');
+    const results = await page.evaluate(() => {
+      const gameContainer = document.querySelectorAll('.game-line-container')[1]
+      const games = gameContainer.querySelectorAll('.game-line');
       const data = [];
       games.forEach((game) => {
-        const date = document
-          .querySelector('time[datetime]')
-          ?.getAttribute('datetime')
-          .split('T')[0];
-        const time = game.querySelector('time[datetime]')?.textContent.trim();
+        const homeScore = game
+          .querySelector('.home-score')
+          ?.textContent.trim()
+        const awayScore = game
+          .querySelector('.away-score')
+          ?.textContent.trim()
         const homeTeam = game
           .querySelector('.home-team')
           ?.textContent.trim()
@@ -31,20 +32,18 @@ export const getTodaySchedule = async () => {
           .querySelector('.away-team')
           ?.textContent.trim()
           .split('\n')[0];
-        const location = game.querySelector('.venue')?.textContent.trim();
 
-        if (date && time && homeTeam && awayTeam && location) {
-          data.push({ date, time, homeTeam, awayTeam, location });
+        if (awayScore && homeScore  && homeTeam && awayTeam) {
+          data.push({ awayScore, homeScore, homeTeam, awayTeam});
         }
       });
       return data;
     });
-    // console.log(schedule);
     const json2csvParser = new Parser();
-    const csv = json2csvParser.parse(schedule);
+    const csv = json2csvParser.parse(results);
 
     const dirPath = path.resolve('../csv');
-    const filePath = path.join(dirPath, 'gameSchedule.csv');
+    const filePath = path.join(dirPath, 'gameResults.csv');
 
     if (!fs.existsSync(dirPath)) {
       fs.mkdirSync(dirPath, { recursive: true });
@@ -53,8 +52,7 @@ export const getTodaySchedule = async () => {
 
     await browser.close();
   } catch (error) {
-    console.error('Error fetching schedule:', error);
+    console.error('Error fetching results:', error);
   }
 };
-
-getTodaySchedule();
+getGameResult()
