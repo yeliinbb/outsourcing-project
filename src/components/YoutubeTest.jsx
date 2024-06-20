@@ -21,7 +21,6 @@ const YoutubeTest = ({
         }
 
         const playlistItems = playlistData.items;
-        console.log('Playlist Items:', playlistItems);
 
         let filteredItems = playlistItems;
 
@@ -30,7 +29,6 @@ const YoutubeTest = ({
             const itemTitle = item.snippet.title.trim().toLowerCase();
             return itemTitle.includes(searchKeyword.trim().toLowerCase());
           });
-          console.log('Filtered Items:', filteredItems);
         }
 
         // 페이지네이션을 위한 전체 페이지 수 설정
@@ -46,7 +44,6 @@ const YoutubeTest = ({
             (item) => item.contentDetails.videoId
           );
           const videoDetails = await api.youtube.fetchVideoDetails(videoIds);
-          console.log('Video Details:', videoDetails);
 
           const videosWithDetails = currentItems.map((item) => {
             const videoDetail = videoDetails.find(

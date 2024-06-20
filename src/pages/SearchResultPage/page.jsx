@@ -11,6 +11,20 @@ const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
 
 function SeacrhResultPage() {
   const { keyword } = useParams();
+  const tags = [
+    '하이라이트',
+    'SSG',
+    '롯데 ',
+    'NC',
+    'KIA',
+    '삼성',
+    '두산',
+    'LG',
+    'KT',
+    '한화',
+    '키움',
+  ];
+  const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -25,8 +39,8 @@ function SeacrhResultPage() {
 
   const videos = list.filter(
     (item) =>
-      item.snippet.title.includes(keyword) ||
-      item.snippet.description.includes(keyword)
+      item.snippet.title.toLowerCase().includes(keyword.toLowerCase()) ||
+      item.snippet.description.toLowerCase().includes(keyword.toLowerCase())
   );
 
   return (
