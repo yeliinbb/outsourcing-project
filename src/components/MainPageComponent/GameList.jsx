@@ -57,13 +57,13 @@ const GameList = ({ gameInfo, weatherInfo }) => {
       </div>
       <div className="flex items-center gap-3">
         <div className="flex justify-start items-center gap-3 min-w-[180px]">
-          <p>{gameInfo.homeTeam}</p>
-          <img src={logos[gameInfo.homeTeam]} className="w-8 h-8" />
+          <p>{gameInfo.awayTeam}</p>
+          <img src={logos[gameInfo.awayTeam]} className="w-8 h-8" />
         </div>
         <div>vs</div>
         <div className="flex items-center justify-end gap-3 min-w-[180px]">
-          <img src={logos[gameInfo.awayTeam]} className="w-8 h-8" />
-          <p>{gameInfo.awayTeam}</p>
+          <img src={logos[gameInfo.homeTeam]} className="w-8 h-8" />
+          <p>{gameInfo.homeTeam}</p>
           <div className="w-4 h-4 bg-bgGray flex items-center justify-center p-3 rounded-lg">
             <span>홈</span>
           </div>
