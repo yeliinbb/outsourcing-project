@@ -22,22 +22,13 @@ function SeacrhResultPage() {
       setList(items);
     };
     fetchPlaylistItems();
-  });
+  }, []);
 
-  useEffect(() => {
-    if (keyword) {
-      return;
-    }
-
-    // 검색 키워드에 따른 필터링
-    setList([
-      ...list.filter(
-        (item) =>
-          item.snippet.title.includes(keyword) ||
-          item.snippet.description.includes(keyword)
-      ),
-    ]);
-  }, [list, keyword]);
+  const videos = list.filter(
+    (item) =>
+      item.snippet.title.includes(keyword) ||
+      item.snippet.description.includes(keyword)
+  );
 
   return (
     <main className="py-12">
@@ -46,14 +37,20 @@ function SeacrhResultPage() {
         <div className="py-3">
           <Tags words={tags} />
         </div>
+        <ul className="py-7 flex flex-wrap">
+          {!videos.length ? (
+            <div className="">
+              <h3>검색 결과가 없습니다. △사람들이 많이 사용하는 검색어△</h3>
+            </div>
+          ) : (
+            videos.map((item, i) => (
+              <li key={i} className="w-1/3 min-w-80 px-2">
+                <Video item={item.snippet} />
+              </li>
+            ))
+          )}
+        </ul>
       </div>
-      <ul className="py-7 flex flex-wrap">
-        {list.map((item, i) => (
-          <li key={i} className="w-1/3 min-w-80 px-2">
-            <Video item={item.snippet} />
-          </li>
-        ))}
-      </ul>
     </main>
   );
 }
