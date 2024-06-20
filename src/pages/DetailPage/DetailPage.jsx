@@ -89,12 +89,6 @@ const DetailPage = () => {
           </li>
           <li>
             <div className="text-center">
-              <p className="mb-2 font-bold">구단주</p>
-              <p>{teamData.owner}</p>
-            </div>
-          </li>
-          <li>
-            <div className="text-center">
               <p className="mb-2 font-bold">감독</p>
               <p>{teamData.manager}</p>
             </div>
@@ -112,7 +106,7 @@ const DetailPage = () => {
         </ul>
         <div className="absolute bottom-10 right-36 text-white w-2/5">
           <p className="mb-2 text-xl font-bold">구단 소개</p>
-          <p className="leading-8">{teamData.introduction}</p>
+          <p className="leading-8 line-clamp-3">{teamData.introduction}</p>
         </div>
       </section>
       <section className="mx-auto w-[90%]">
