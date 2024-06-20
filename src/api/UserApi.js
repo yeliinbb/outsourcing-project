@@ -1,10 +1,9 @@
 import { APP_BASE_URL } from '../keys';
-import supabase from '../supabase/supabaseClient';
 class UserAPI {
   #client;
 
-  constructor() {
-    this.#client = supabase;
+  constructor(client) {
+    this.#client = client;
   }
 
   async signIn() {
