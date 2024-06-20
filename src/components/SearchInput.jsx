@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import IconSearch from '../assets/icons/search.svg';
 
-function SearchInput() {
-  const [keyword, setKeyword] = useState();
+function SearchInput({ intialValue = '' }) {
+  const [keyword, setKeyword] = useState(intialValue);
   const navigate = useNavigate();
 
   const handleOnSearch = (e) => {
