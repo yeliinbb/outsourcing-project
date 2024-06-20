@@ -1,5 +1,6 @@
 // SeacrhResultPage.js
 import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import api from '../../api/api';
 import SearchInput from '../../components/SearchInput';
@@ -9,6 +10,8 @@ import Video from '../../components/Video';
 function SeacrhResultPage() {
   const [params] = useSearchParams();
   const keyword = params.get('w') || '';
+  const [list, setList] = useState([]);
+  const [nextPageToken, setNextPageToken] = useState();
 
   const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
   const { data, isSuccess } = useQuery({
@@ -16,8 +19,24 @@ function SeacrhResultPage() {
     queryFn: async () => api.youtube.fetchPlaylistItems(playlistId),
   });
 
+  useEffect(() => {
+    if (isSuccess) {
+      setList(data.items);
+      setNextPageToken(data.nextPageToken);
+    }
+  }, [isSuccess]);
+
+  const handleMoreVideo = async () => {
+    console.log('click');
+    const { items, nextPageToken: token } =
+      await api.youtube.fetchPlaylistItems(playlistId, nextPageToken);
+
+    setList([...list, ...items]);
+    setNextPageToken(token);
+  };
+
   const videos = isSuccess
-    ? data.items?.filter(
+    ? list.filter(
         (item) =>
           item.snippet.title.toLowerCase().includes(keyword?.toLowerCase()) ||
           item.snippet.description
@@ -46,6 +65,12 @@ function SeacrhResultPage() {
             ))
           )}
         </ul>
+        <button
+          className="w-full border border-solid py-2 border-darkgray hover:bg-darkgray hover:text-white"
+          onClick={handleMoreVideo}
+        >
+          ...더보기
+        </button>
       </div>
     </main>
   );
