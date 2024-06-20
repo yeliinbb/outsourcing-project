@@ -46,7 +46,7 @@ export const getTodaySchedule = async () => {
     const dirPath = path.resolve('../csv');
     const filePath = path.join(dirPath, 'gameSchedule.csv');
 
-    if (fs.existsSync(dirPath)) {
+    if (!fs.existsSync(dirPath)) {
       fs.mkdirSync(dirPath, { recursive: true });
     }
     fs.writeFileSync(filePath, csv);
