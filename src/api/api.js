@@ -9,5 +9,4 @@ class API {
 }
 
 const api = new API();
-console.log('api', api);
 export default api;

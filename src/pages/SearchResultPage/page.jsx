@@ -26,8 +26,6 @@ function SeacrhResultPage() {
   const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
 
   useEffect(() => {
-    console.log(keyword);
-
     const fetchPlaylistItems = async () => {
       const youtubeAPI = new YoutubeAPI();
       const response = await youtubeAPI.fetchPlaylistItems(playlistId);
