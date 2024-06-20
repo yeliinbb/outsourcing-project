@@ -1,99 +1,31 @@
-import React from 'react';
-
-const teamRank = [
-  {
-    number: 1,
-    title: 'KIA',
-    game: 70,
-    win: 41,
-    draw: 1,
-    lose: 28,
-    odds: 0.594,
-  },
-  {
-    number: 2,
-    title: 'LG',
-    game: 70,
-    win: 41,
-    draw: 1,
-    lose: 28,
-    odds: 0.594,
-  },
-  {
-    number: 3,
-    title: '두산',
-    game: 70,
-    win: 41,
-    draw: 1,
-    lose: 28,
-    odds: 0.594,
-  },
-  {
-    number: 4,
-    title: '삼성',
-    game: 70,
-    win: 41,
-    draw: 1,
-    lose: 28,
-    odds: 0.594,
-  },
-  {
-    number: 5,
-    title: 'SSG',
-    game: 70,
-    win: 41,
-    draw: 1,
-    lose: 28,
-    odds: 0.594,
-  },
-  {
-    number: 6,
-    title: 'NC',
-    game: 70,
-    win: 41,
-    draw: 1,
-    lose: 28,
-    odds: 0.594,
-  },
-  {
-    number: 7,
-    title: '한화',
-    game: 70,
-    win: 41,
-    draw: 1,
-    lose: 28,
-    odds: 0.594,
-  },
-  {
-    number: 8,
-    title: '롯데',
-    game: 70,
-    win: 41,
-    draw: 1,
-    lose: 28,
-    odds: 0.594,
-  },
-  {
-    number: 9,
-    title: 'KT',
-    game: 70,
-    win: 41,
-    draw: 1,
-    lose: 28,
-    odds: 0.594,
-  },
-  {
-    number: 10,
-    title: '키움',
-    game: 70,
-    win: 41,
-    draw: 1,
-    lose: 28,
-    odds: 0.594,
-  },
-];
+import React, { useEffect, useState } from 'react';
+import supabase from '../../supabase/supabaseClient';
 
 const RankCard = () => {
+  const [teamRank, setTeamRank] = useState([]);
+
+  useEffect(() => {
+    const fetchTeamRank = async () => {
+      const { data, error } = await supabase
+        .from('teamRank')
+        .select('*')
+        .order('rank', { ascending: true });
+
+      if (error) {
+        console.error('Error fetching team rank:', error);
+      } else {
+        console.log('Fetched data:', data);
+        setTeamRank(data);
+      }
+    };
+
+    fetchTeamRank();
+  }, []);
+
+  const getShortTeamName = (teamName) => {
+    return teamName.split(' ')[0];
+  };
+
   return (
     <main
       className="items-center text-center justify-center w-full h-[95%] bg-darkgray ml-5 rounded-2xl overflow-hidden"
@@ -103,16 +35,15 @@ const RankCard = () => {
         <h1 className="text-white ml-5 mt-5 mb-5 text-l">팀 순위</h1>
       </header>
       <section className="flex text-center justify-center h-full max-h-[90%] max-w-[90%]">
-        <div className="w-[90%] h-[80%] mt-3 grid grid-cols-7 grid-row-10 text-white items-center gap-y-[1vh]">
-          {teamRank.map((team, index) => (
-            <React.Fragment key={index}>
-              <div>{team.number}</div>
-              <div>{team.title}</div>
-              <div>{team.game}</div>
-              <div>{team.win}</div>
-              <div>{team.draw}</div>
-              <div>{team.lose}</div>
-              <div>{team.odds}</div>
+        <div className="w-[90%] h-[80%] grid grid-cols-6 grid-row-10 text-white items-center gap-y-[1vh]">
+          {teamRank.map((team) => (
+            <React.Fragment key={team.id}>
+              <div>{team.rank}</div>
+              <div>{getShortTeamName(team.teamName)}</div>
+              <div className="ml-10">{team.wins}</div>
+              <div className="ml-8">{team.losses}</div>
+              <div className="ml-8">{team.draws}</div>
+              <div className="ml-6">{team.ties}</div>
             </React.Fragment>
           ))}
         </div>
