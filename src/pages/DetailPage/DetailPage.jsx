@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import supabase from '../../supabase/supabaseClient';
-import Tags from '../../components/Tags';
 import { useParams } from 'react-router';
+import Tags from '../../components/Tags';
+import supabase from '../../supabase/supabaseClient';
 import YoutubeTest from '../../components/YoutubeTest';
 
 const DetailPage = () => {
@@ -29,11 +29,10 @@ const DetailPage = () => {
 
     const keywordHandler = async () => {
       try {
-        const { data: keyword } = await supabase
-          .from('KBOTeamKeyword')
-          .select('*')
-          .eq('id', id);
-        setKeyword(keyword);
+        const {
+          data: [result],
+        } = await supabase.from('KBOTeamKeyword').select('*').eq('id', id);
+        setKeyword(result.keyword);
       } catch (error) {
         console.log(error);
       }

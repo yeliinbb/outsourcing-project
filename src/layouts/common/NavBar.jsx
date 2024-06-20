@@ -1,67 +1,67 @@
 import React from 'react';
-import home from '../../images/home.png';
-import icon1 from '../../images/icon1.png';
-import icon2 from '../../images/icon2.png';
-import icon3 from '../../images/icon3.png';
-import icon4 from '../../images/icon4.png';
-import icon5 from '../../images/icon5.png';
-import icon6 from '../../images/icon6.png';
-import icon7 from '../../images/icon7.png';
-import icon8 from '../../images/icon8.png';
-import icon9 from '../../images/icon9.png';
-import icon10 from '../../images/icon10.png';
+import home from '../../assets/images/home.png';
+import Kiwoom from '../../assets/logo/Kiwoom.svg';
+import Doosan from '../../assets/logo/Doosan.svg';
+import Samsung from '../../assets/logo/Samsung.svg';
+import SSG from '../../assets/logo/SSG.svg';
+import Kia from '../../assets/logo/Kia.svg';
+import NC from '../../assets/logo/NC.svg';
+import KT from '../../assets/logo/KT.svg';
+import LG from '../../assets/logo/LG.svg';
+import Lotte from '../../assets/logo/Lotte.svg';
+import Hanwha from '../../assets/logo/Hanwha.svg';
 import { useNavigate } from 'react-router';
 
 const imagePaths = [
   {
     number: 1,
     title: 'icon1',
-    image: icon1,
+    image: Kiwoom,
   },
   {
     number: 2,
     title: 'icon2',
-    image: icon2,
+    image: Doosan,
   },
   {
     number: 3,
     title: 'icon3',
-    image: icon3,
+    image: Samsung,
   },
   {
     number: 4,
     title: 'icon4',
-    image: icon4,
+    image: SSG,
   },
   {
     number: 5,
     title: 'icon5',
-    image: icon5,
+    image: Kia,
   },
   {
     number: 6,
     title: 'icon6',
-    image: icon6,
+    image: NC,
   },
   {
     number: 7,
     title: 'icon7',
-    image: icon7,
+    image: KT,
   },
   {
     number: 8,
     title: 'icon8',
-    image: icon8,
+    image: LG,
   },
   {
     number: 9,
     title: 'icon9',
-    image: icon9,
+    image: Lotte,
   },
   {
     number: 10,
     title: 'icon10',
-    image: icon10,
+    image: Hanwha,
   },
 ];
 

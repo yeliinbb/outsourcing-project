@@ -1,8 +1,6 @@
-import React from 'react';
-import hongpro from '../../images/hongpro.jpeg';
-import cbo5penr from '../../images/cbo5penr.jpeg';
-import keystoneplay from '../../images/keystoneplay.jpeg';
-import nomaTV from '../../images/nomaTV.jpeg';
+import cbo5penr from '../../assets/images/cbo5penr.jpeg';
+import hongpro from '../../assets/images/hongpro.jpeg';
+import keystoneplay from '../../assets/images/keystoneplay.jpeg';
 
 const youtuberList = [
   {
