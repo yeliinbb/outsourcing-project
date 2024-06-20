@@ -9,7 +9,6 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 10 * 1000, // 1분 동안 데이터가 신선하다고 간주
-      // cacheTime: 10 * 60 * 1000, // // 10분 동안 캐시에 보관
     },
   },
 });
