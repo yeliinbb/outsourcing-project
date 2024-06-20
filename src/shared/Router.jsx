@@ -11,7 +11,7 @@ const Router = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="detail/:id" element={<DetailPage />} />
-          <Route path="/search/:keyword" element={<SeacrhResultPage />} />
+          <Route path="/search" element={<SeacrhResultPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

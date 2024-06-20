@@ -30,13 +30,14 @@ class YoutubeAPI {
   }
 
   // 채널에서 재생목록
-  async fetchPlaylistItems(playlistId) {
+  async fetchPlaylistItems(playlistId, nextPageToken) {
     const response = await this.#client.get('/playlistItems', {
       params: {
         part: 'snippet,contentDetails',
         playlistId: playlistId,
         maxResults: 50,
         key: youtubeKey,
+        nextPageToken,
       },
       headers: {
         Accept: 'application/json',

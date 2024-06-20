@@ -12,7 +12,7 @@ function SearchInput({ value = '' }) {
 
   const handleOnSearch = (e) => {
     e.preventDefault();
-    navigate(`/search/${keyword}`);
+    navigate(`/search?w=${keyword}`);
   };
 
   return (
