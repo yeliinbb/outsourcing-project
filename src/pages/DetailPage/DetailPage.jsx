@@ -29,6 +29,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     setPlaylistId(getPlaylistId(id));
+    setSearchKeyword('');
   }, [id]);
 
   const { data: teamData, error: teamError } = useQuery({

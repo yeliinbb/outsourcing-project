@@ -10,7 +10,19 @@ import YoutubeAPI from '../../api/YoutubeApi';
 function SeacrhResultPage() {
   const { keyword } = useParams();
   const [list, setList] = useState(initialData.items);
-  const tags = ['안치홍', '안치홍', '안치홍', '안치홍', '안치홍'];
+  const tags = [
+    '하이라이트',
+    'SSG',
+    '롯데 ',
+    'NC',
+    'KIA',
+    '삼성',
+    '두산',
+    'LG',
+    'KT',
+    '한화',
+    '키움',
+  ];
   const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
 
   useEffect(() => {
@@ -22,10 +34,8 @@ function SeacrhResultPage() {
       const items = response.items; // 가져온 데이터에서 items를 추출합니다.
 
       // 검색 키워드에 따른 필터링
-      const filteredItems = items.filter(
-        (item) =>
-          item.snippet.title.includes(keyword) ||
-          item.snippet.description.includes(keyword)
+      const filteredItems = items.filter((item) =>
+        item.snippet.title.toLowerCase().includes(keyword.toLowerCase())
       );
       setList(filteredItems);
     };
