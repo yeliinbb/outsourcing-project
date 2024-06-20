@@ -9,7 +9,7 @@ function Tags({ words = [], onTagClick }) {
         <Link
           key={i}
           to={`/search/${word}`}
-          className="bg-darkgray text-white py-1.5 px-4 rounded-full"
+          className="bg-darkgray text-white py-1.5 px-4 rounded-full hover:opacity-80"
           onClick={() => onTagClick(word)}
         >
           #{word}
