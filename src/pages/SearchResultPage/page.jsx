@@ -1,7 +1,7 @@
 // SeacrhResultPage.js
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import YoutubeAPI from '../../api/YoutubeApi';
+import api from '../../api/api';
 import SearchInput from '../../components/SearchInput';
 import Tags from '../../components/Tags';
 import Video from '../../components/Video';
@@ -15,8 +15,7 @@ function SeacrhResultPage() {
 
   useEffect(() => {
     const fetchPlaylistItems = async () => {
-      const youtubeAPI = new YoutubeAPI();
-      const response = await youtubeAPI.fetchPlaylistItems(playlistId);
+      const response = await api.youtube.fetchPlaylistItems(playlistId);
       const items = response.items; // 가져온 데이터에서 items를 추출합니다.
 
       setList(items);
