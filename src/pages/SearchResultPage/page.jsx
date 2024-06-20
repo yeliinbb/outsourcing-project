@@ -5,7 +5,7 @@ import SearchInput from '../../components/SearchInput';
 import Tags from '../../components/Tags';
 import Video from '../../components/Video';
 import initialData from './InitialSearchResult.json';
-import YoutubeAPI from '../../api/youtubeApi';
+import YoutubeAPI from '../../api/YoutubeApi';
 
 function SeacrhResultPage() {
   const { keyword } = useParams();
