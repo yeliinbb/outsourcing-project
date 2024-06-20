@@ -11,7 +11,6 @@ const DetailPage = () => {
       .from('KBOTeam')
       .select('*')
       .eq('id', id);
-    console.log(teamData);
     return teamData[0];
   };
 
