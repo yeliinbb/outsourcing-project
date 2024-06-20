@@ -19,7 +19,6 @@ import KT from '../../assets/logo/KT.svg';
 import SSG from '../../assets/logo/SSG.svg';
 
 const GameList = ({ gameInfo, weatherInfo }) => {
-  // 팀별 로고
   const logos = {
     LG: LG,
     Kia: Kia,

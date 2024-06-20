@@ -18,7 +18,6 @@ const SwiperImage = ({ videos }) => {
   if (videos.length === 0) {
     return <div>Loading...</div>;
   }
-  console.log('videos.length', videos.length);
 
   const currentVideo = videos[currentIndex];
 
