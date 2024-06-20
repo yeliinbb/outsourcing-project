@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const youtubeKey = import.meta.env.VITE_YOUTUBE_KEY;
+console.log('youtubeKey', youtubeKey);
 
 class YoutubeAPI {
   #client;
