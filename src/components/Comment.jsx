@@ -64,8 +64,8 @@ const Comment = () => {
   }
 
   return (
-    <section className="flex justify-center w-full h-full p-3 text-white">
-      <div className="flex flex-col bg-darkgray w-full h-[50%] rounded-2xl p-9 gap-3 m-3">
+    <section className="flex justify-center w-full p-3 text-white">
+      <div className="flex flex-col bg-darkgray w-full h-[100%] rounded-2xl p-9 gap-3 m-3">
         <p className="text-xl">한 줄 응원하기</p>
         <form
           className="flex gap-3 w-full h-[10%] justify-between items-center gap-1 text-darkgray"
@@ -84,11 +84,10 @@ const Comment = () => {
             작성하기
           </button>
         </form>
-        <ul className="grid auto-rows-[10%] gap-1 p-3 bg-white text-darkgray h-[100%] rounded-md overflow-y-auto">
+        <ul className="grid auto-rows-[10%] gap-1 p-3 bg-white text-darkgray min-h-[300px] rounded-md overflow-y-auto">
           {isPending && <div>댓글이 로딩중입니다...</div>}
           {isSuccess &&
             comments.map((comment, index) => {
-              // console.log(comment['page_id']);
               if (comment['page_id'] == pageId) {
                 const date = comment.created_at
                   .split('.', 1)[0]
@@ -96,7 +95,6 @@ const Comment = () => {
                 const time = comment.created_at
                   .split('+', 1)[0]
                   .split('T', 2)[1];
-                // console.log(date, time);
                 return (
                   <li className="flex justify-between p-2" key={index}>
                     <span>{comment.body}</span>
