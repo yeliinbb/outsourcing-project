@@ -20,10 +20,10 @@ const MainPage = () => {
     <div className="flex h-screen">
       <div className="w-1/4 h-full flex flex-col justify-center">
         <img src={logoHB} className="ml-5 mt-5" />
-        <div className="w-full h-72 flex items-center justify-center">
+        <div className="w-full h-[220px] flex items-center justify-center">
           <MatchCard />
         </div>
-        <div className="flex-1 pr-5">
+        <div className="flex-1 pr-5 mt-5">
           <RankCard />
         </div>
       </div>
