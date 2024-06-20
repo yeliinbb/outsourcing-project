@@ -1,6 +1,6 @@
 // SeacrhResultPage.js
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import api from '../../api/api';
 import SearchInput from '../../components/SearchInput';
@@ -35,15 +35,20 @@ function SeacrhResultPage() {
     setNextPageToken(token);
   };
 
-  const videos = isSuccess
-    ? list.filter(
-        (item) =>
-          item.snippet.title.toLowerCase().includes(keyword?.toLowerCase()) ||
-          item.snippet.description
-            .toLowerCase()
-            .includes(keyword?.toLowerCase())
-      )
-    : [];
+  const getFilteredList = useCallback((list) => {
+    const filteredList = list.filter(
+      (item) =>
+        item.snippet.title.toLowerCase().includes(keyword?.toLowerCase()) ||
+        item.snippet.description.toLowerCase().includes(keyword?.toLowerCase())
+    );
+
+    // 3의 배수 갯수로 자르기
+    return filteredList.length % 3
+      ? filteredList.splice(0, filteredList.length - (filteredList.length % 3))
+      : filteredList;
+  }, []);
+
+  const videos = getFilteredList(list);
 
   return (
     <main className="py-12">
