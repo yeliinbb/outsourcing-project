@@ -28,16 +28,17 @@
 <details>
 <summary>🚩 필수 구현</summary>
 <div markdown="1">
-
-- [x] 1 단계
-- [ ] 2 단계
-- [ ] 3 단계
-- [ ] 4 단계
+- 외부 API를 활용하기 <br />
+- Tanstack Query를 사용하여 전역 상태관리 <br />
+- Supabase DB 활용
 </div>
 </details>
 
 <details>
 <summary>⚾ 추가 구현</summary>
+- pagination 기능 <br />
+- 구단 응원글 작성 기능 <br />
+- github 로그인 기능
 </details>
 
 ## 외부 시스템
