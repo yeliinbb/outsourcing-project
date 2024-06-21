@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import IconSearch from '../../assets/icons/search.svg';
 import { useNavigate } from 'react-router-dom';
+import IconSearch from '../../assets/icons/search.svg';
 
 function SearchInput() {
   const [keyword, setKeyword] = useState();
@@ -18,7 +18,7 @@ function SearchInput() {
 
   const handleSearch = () => {
     if (keyword.trim() !== '') {
-      navigate(`/search/${keyword}`);
+      navigate(`/search?w=${keyword}`);
     }
   };
 

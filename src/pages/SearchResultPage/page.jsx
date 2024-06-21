@@ -1,54 +1,60 @@
 // SeacrhResultPage.js
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
+import { useCallback, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import api from '../../api/api';
 import SearchInput from '../../components/SearchInput';
 import Tags from '../../components/Tags';
 import Video from '../../components/Video';
 
-const tags = ['하이라이트', 'KBO', '야구'];
-const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
-
 function SeacrhResultPage() {
-  const { keyword } = useParams();
-  const tags = [
-    '하이라이트',
-    'SSG',
-    '롯데 ',
-    'NC',
-    'KIA',
-    '삼성',
-    '두산',
-    'LG',
-    'KT',
-    '한화',
-    '키움',
-  ];
-  const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
+  const [params] = useSearchParams();
+  const keyword = params.get('w') || '';
   const [list, setList] = useState([]);
+  const [nextPageToken, setNextPageToken] = useState();
+
+  const playlistId = 'PLTk72eULaCiC7vjbNk-b3dZ_6ufhy9bfR';
+  const { data, isSuccess } = useQuery({
+    queryKey: ['youtube', { playlistId }],
+    queryFn: async () => api.youtube.fetchPlaylistItems(playlistId),
+  });
 
   useEffect(() => {
-    const fetchPlaylistItems = async () => {
-      const response = await api.youtube.fetchPlaylistItems(playlistId);
-      const items = response.items; // 가져온 데이터에서 items를 추출합니다.
+    if (isSuccess) {
+      setList(data.items);
+      setNextPageToken(data.nextPageToken);
+    }
+  }, [isSuccess]);
 
-      setList(items);
-    };
-    fetchPlaylistItems();
+  const handleMoreVideo = async () => {
+    const { items, nextPageToken: token } =
+      await api.youtube.fetchPlaylistItems(playlistId, nextPageToken);
+
+    setList([...list, ...items]);
+    setNextPageToken(token);
+  };
+
+  const getFilteredList = useCallback((list) => {
+    const filteredList = list.filter(
+      (item) =>
+        item.snippet.title.toLowerCase().includes(keyword?.toLowerCase()) ||
+        item.snippet.description.toLowerCase().includes(keyword?.toLowerCase())
+    );
+
+    // 3의 배수 갯수로 자르기
+    return filteredList.length % 3
+      ? filteredList.splice(0, filteredList.length - (filteredList.length % 3))
+      : filteredList;
   }, []);
 
-  const videos = list.filter(
-    (item) =>
-      item.snippet.title.toLowerCase().includes(keyword.toLowerCase()) ||
-      item.snippet.description.toLowerCase().includes(keyword.toLowerCase())
-  );
+  const videos = getFilteredList(list);
 
   return (
     <main className="py-12">
       <div className="px-4">
         <SearchInput value={keyword} />
         <div className="py-3">
-          <Tags words={tags} />
+          <Tags words={TAGS} />
         </div>
         <ul className="py-7 flex flex-wrap">
           {!videos.length ? (
@@ -63,9 +69,29 @@ function SeacrhResultPage() {
             ))
           )}
         </ul>
+        <button
+          className="w-full border border-solid py-2 border-darkgray hover:bg-darkgray hover:text-white"
+          onClick={handleMoreVideo}
+        >
+          ...더보기
+        </button>
       </div>
     </main>
   );
 }
 
 export default SeacrhResultPage;
+
+const TAGS = [
+  '하이라이트',
+  'SSG',
+  '롯데 ',
+  'NC',
+  'KIA',
+  '삼성',
+  '두산',
+  'LG',
+  'KT',
+  '한화',
+  '키움',
+];
