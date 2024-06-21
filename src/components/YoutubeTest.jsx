@@ -44,6 +44,7 @@ const YoutubeTest = ({
             (item) => item.contentDetails.videoId
           );
           const videoDetails = await api.youtube.fetchVideoDetails(videoIds);
+          console.log('Video Details:', videoDetails);
 
           const videosWithDetails = currentItems.map((item) => {
             const videoDetail = videoDetails.find(
