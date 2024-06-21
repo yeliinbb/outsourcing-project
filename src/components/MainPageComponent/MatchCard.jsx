@@ -1,20 +1,29 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import api from '../../api/api';
+import { teamLogo } from '../../components/MainPageComponent/TeamLogo';
 
 const MatchCard = () => {
   const [index, setIndex] = useState(0);
+  const [throttle, setThrottle] = useState(false);
   const { data: games, isSuccess } = useQuery({
     queryKey: ['gameResults'],
     queryFn: () => api.game.getRecentResults(),
   });
 
-  const handleOnClick = (number) => {
-    const maxCount = games.length;
-    setIndex((i) => {
-      const nextIndex = i + number;
-      return nextIndex < 0 ? maxCount + 1 - number : nextIndex % maxCount;
-    });
+  const handleOnClick = (n) => {
+    if (throttle) {
+      return;
+    }
+    setThrottle(true);
+    setTimeout(async () => {
+      setIndex((i) => {
+        const maxCount = games.length;
+        const nextIndex = i + n;
+        return nextIndex < 0 ? maxCount + nextIndex : nextIndex % maxCount;
+      });
+      setThrottle(false);
+    }, 300);
   };
 
   const game = isSuccess ? games[index] : {};
@@ -38,7 +47,7 @@ const MatchCard = () => {
           <div className="flex flex-row text-white text-center">
             <span>
               <img
-                src={`/src/assets/logo/${game.awayTeam}.svg`}
+                src={teamLogo[game?.awayTeam]?.img}
                 className="w-20 h-20 mx-4 "
               />
               <span className="text-3xl font-bold">{game.awayScore}</span>
@@ -46,7 +55,7 @@ const MatchCard = () => {
             <span className="pt-10 text-xl"> vs. </span>
             <span>
               <img
-                src={`/src/assets/logo/${game.homeTeam}.svg`}
+                src={teamLogo[game?.homeTeam]?.img}
                 className="w-20 h-20 mx-4"
               />
               <span className="text-3xl font-bold">{game.homeScore}</span>
