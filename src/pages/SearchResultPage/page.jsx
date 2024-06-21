@@ -27,7 +27,6 @@ function SeacrhResultPage() {
   }, [isSuccess]);
 
   const handleMoreVideo = async () => {
-    console.log('click');
     const { items, nextPageToken: token } =
       await api.youtube.fetchPlaylistItems(playlistId, nextPageToken);
 
