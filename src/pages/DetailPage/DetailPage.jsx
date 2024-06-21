@@ -75,7 +75,7 @@ const DetailPage = () => {
     setCurrentPage(1); // 태그 클릭 시 현재 페이지를 1로 초기화
   };
 
-  console.log(isPending);
+  // console.log(isPending);
   return (
     <div className="bg-bgGray h-screen">
       <section className="relative aspect-w-16 aspect-h-9">

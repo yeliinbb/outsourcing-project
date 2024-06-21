@@ -14,7 +14,7 @@ const RankCard = () => {
       if (error) {
         console.error('Error fetching team rank:', error);
       } else {
-        console.log('Fetched data:', data);
+        // console.log('Fetched data:', data);
         setTeamRank(data);
       }
     };
