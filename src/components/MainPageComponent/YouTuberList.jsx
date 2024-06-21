@@ -35,8 +35,8 @@ const YouTuberList = () => {
         <h1 className="text-white mt-3 text-center font-semibold">
           추천 유튜버
         </h1>
-        {youtuberList.map((youtuber) => (
-          <div className="flex items-center">
+        {youtuberList.map((youtuber, i) => (
+          <div key={i} className="flex items-center">
             <h1 className="text-lg font-semibold ml-5 mt-2 text-white">
               {youtuber.number}
             </h1>

@@ -1,4 +1,3 @@
-// SeacrhResultPage.js
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -7,7 +6,7 @@ import SearchInput from '../../components/SearchInput';
 import Tags from '../../components/Tags';
 import Video from '../../components/Video';
 
-function SeacrhResultPage() {
+function SearchResultPage() {
   const [params] = useSearchParams();
   const keyword = params.get('w') || '';
   const [list, setList] = useState([]);
@@ -24,28 +23,32 @@ function SeacrhResultPage() {
       setList(data.items);
       setNextPageToken(data.nextPageToken);
     }
-  }, [isSuccess]);
+  }, [isSuccess, data]);
 
   const handleMoreVideo = async () => {
     const { items, nextPageToken: token } =
       await api.youtube.fetchPlaylistItems(playlistId, nextPageToken);
 
-    setList([...list, ...items]);
+    setList((prevList) => [...prevList, ...items]);
     setNextPageToken(token);
   };
 
-  const getFilteredList = useCallback((list) => {
-    const filteredList = list.filter(
-      (item) =>
-        item.snippet.title.toLowerCase().includes(keyword?.toLowerCase()) ||
-        item.snippet.description.toLowerCase().includes(keyword?.toLowerCase())
-    );
+  const getFilteredList = useCallback(
+    (list) => {
+      const lowerKeyword = keyword.toLowerCase();
+      const filteredList = list.filter(
+        (item) =>
+          item.snippet.title.toLowerCase().includes(lowerKeyword) ||
+          item.snippet.description.toLowerCase().includes(lowerKeyword)
+      );
 
-    // 3의 배수 갯수로 자르기
-    return filteredList.length % 3
-      ? filteredList.splice(0, filteredList.length - (filteredList.length % 3))
-      : filteredList;
-  }, []);
+      // 3의 배수 갯수로 자르기
+      return filteredList.length % 3
+        ? filteredList.slice(0, filteredList.length - (filteredList.length % 3))
+        : filteredList;
+    },
+    [keyword]
+  );
 
   const videos = getFilteredList(list);
 
@@ -58,12 +61,12 @@ function SeacrhResultPage() {
         </div>
         <ul className="py-7 flex flex-wrap">
           {!videos.length ? (
-            <div className="">
+            <div>
               <h3>검색 결과가 없습니다.</h3>
             </div>
           ) : (
-            videos.map((item, i) => (
-              <li key={i} className="w-1/3 min-w-80 px-2">
+            videos.map((item) => (
+              <li key={item.id} className="w-1/3 min-w-80 px-2">
                 <Video item={item.snippet} />
               </li>
             ))
@@ -80,12 +83,12 @@ function SeacrhResultPage() {
   );
 }
 
-export default SeacrhResultPage;
+export default SearchResultPage;
 
 const TAGS = [
   '하이라이트',
   'SSG',
-  '롯데 ',
+  '롯데',
   'NC',
   'KIA',
   '삼성',
