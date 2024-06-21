@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import api from '../../api/api';
 
 const MatchCard = () => {
@@ -9,7 +9,6 @@ const MatchCard = () => {
     queryFn: () => api.game.getRecentResults(),
   });
 
-  console.log('MatchCard', games);
   const handleOnClick = (number) => {
     const maxCount = games.length;
     setIndex((i) => {
@@ -19,8 +18,6 @@ const MatchCard = () => {
   };
 
   const game = isSuccess ? games[index] : {};
-  console.log(game);
-  useEffect(() => {}, [isSuccess, index]);
 
   return (
     <main className="w-full bg-darkgray ml-5 mt-5 rounded-2xl">
